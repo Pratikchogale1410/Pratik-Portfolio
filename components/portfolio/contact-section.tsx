@@ -1,6 +1,6 @@
 "use client";
 
-import { Link2, Mail, Phone } from "lucide-react";
+import { Code, Link2, Mail, Phone } from "lucide-react";
 import { personalInfo } from "@/data/portfolio-data";
 import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
@@ -37,6 +37,15 @@ export function ContactSection() {
               >
                 <Link2 size={18} className="text-blue-600" />
                 linkedin.com/in/pratik-chogale
+              </a>
+              <a
+                href="https://github.com/Pratikchogale1410/"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-3 hover:text-slate-900"
+              >
+                <Code size={18} className="text-blue-600" />
+                github.com/Pratikchogale1410/
               </a>
             </div>
           </div>

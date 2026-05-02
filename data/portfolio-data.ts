@@ -1,7 +1,7 @@
 export const personalInfo = {
   name: "Pratik Chogale",
   role: "Full Stack Developer",
-  location: "Maharashtra, India",
+  location: "Khopoli, Maharashtra, India",
   tagline: "Full Stack Developer building scalable and AI-powered web applications",
   email: "pratikchogale10@gmail.com",
   phone: "+91 8010069734",
@@ -18,11 +18,15 @@ export const skillGroups = [
   },
   {
     category: "Backend",
-    skills: ["Django", "Firebase", "Supabase"],
+    skills: ["Firebase", "Supabase"],
+  },
+  {
+    category: "Database",
+    skills: ["SQL"],
   },
   {
     category: "Tools",
-    skills: ["GitHub", "Cursor AI", "VS Code", "Power BI", "Excel"],
+    skills: ["GitHub", "Cursor AI", "VS Code", "Power BI", "Excel", "Antigravity"],
   },
 ];
 

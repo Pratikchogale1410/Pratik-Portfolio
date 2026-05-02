@@ -9,14 +9,15 @@ import { Reveal } from "./reveal";
 const categoryIcons: Record<string, ComponentType<{ size?: number; className?: string }>> = {
   Frontend: MonitorSmartphone,
   Backend: Server,
+  Database: Database,
   Tools: BriefcaseBusiness,
 };
 
 const skillIcons: Record<string, ComponentType<{ size?: number; className?: string }>> = {
   Next: Braces,
-  Django: Database,
   Firebase: Database,
   Supabase: Database,
+  SQL: Database,
   Cursor: Sparkles,
 };
 
@@ -31,7 +32,7 @@ export function SkillsSection() {
         />
       </Reveal>
 
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="grid gap-5 md:grid-cols-2">
         {skillGroups.map((group, groupIndex) => {
           const CategoryIcon = categoryIcons[group.category] ?? MonitorSmartphone;
           return (

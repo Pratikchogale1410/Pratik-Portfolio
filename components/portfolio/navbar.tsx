@@ -20,7 +20,7 @@ export function Navbar() {
     >
       <nav className="mx-auto flex w-full max-w-6xl items-center justify-between rounded-full border border-slate-200 bg-white/90 px-5 py-3 shadow-sm backdrop-blur-xl">
         <a href="#home" className="font-display text-sm font-semibold tracking-wide text-slate-900 md:text-base">
-          PRATIK.CODES
+          PRATIK.DEV
         </a>
         <div className="hidden items-center gap-5 md:flex">
           {navItems.map((item) => (

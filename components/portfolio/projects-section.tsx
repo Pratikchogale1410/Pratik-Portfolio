@@ -48,44 +48,47 @@ export function ProjectsSection() {
       </Reveal>
 
       <div className="grid gap-6">
-        {visibleProjects.map((project, index) => (
-          <Reveal key={project.id} delay={index * 0.07}>
-            <article className="glass-card group grid overflow-hidden rounded-3xl border-slate-200 md:grid-cols-5">
-              <div className="relative min-h-56 md:col-span-2">
-                <Image
-                  src={project.image}
-                  alt={`${project.name} preview`}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.01]"
-                />
-              </div>
-              <div className="space-y-5 p-6 md:col-span-3 md:p-8">
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-blue-600">
-                      {project.category}
-                    </p>
-                    <h3 className="mt-2 font-display text-2xl text-slate-900">{project.name}</h3>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700"
-                    >
-                      Live Demo <ArrowUpRight size={16} />
-                    </a>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-1 text-sm font-semibold text-slate-600 transition-colors hover:text-slate-900"
-                    >
-                      GitHub <Link2 size={15} />
-                    </a>
-                  </div>
+        {visibleProjects.map((project, index) => {
+          const hideGithub = ["applysathi", "dermaplastcrm", "evfinder"].includes(project.id);
+          return (
+            <Reveal key={project.id} delay={index * 0.07}>
+              <article className="glass-card group grid overflow-hidden rounded-3xl border-slate-200 md:grid-cols-5">
+                <div className="relative min-h-56 md:col-span-2">
+                  <Image
+                    src={project.image}
+                    alt={`${project.name} preview`}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.01]"
+                  />
                 </div>
+                <div className="space-y-5 p-6 md:col-span-3 md:p-8">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-blue-600">
+                        {project.category}
+                      </p>
+                      <h3 className="mt-2 font-display text-2xl text-slate-900">{project.name}</h3>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700"
+                      >
+                        Live Demo <ArrowUpRight size={16} />
+                      </a>
+                      {!hideGithub && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          GitHub <Link2 size={15} />
+                        </a>
+                      )}
+                    </div>
+                  </div>
 
                 <p className="text-sm leading-7 text-slate-600">
                   <span className="font-semibold text-slate-900">Problem:</span> {project.problem}
