@@ -90,36 +90,37 @@ export function ProjectsSection() {
                     </div>
                   </div>
 
-                <p className="text-sm leading-7 text-slate-600">
-                  <span className="font-semibold text-slate-900">Problem:</span> {project.problem}
-                </p>
-                <p className="text-sm leading-7 text-slate-600">
-                  <span className="font-semibold text-slate-900">Solution:</span> {project.solution}
-                </p>
+                  <p className="text-sm leading-7 text-slate-600">
+                    <span className="font-semibold text-slate-900">Problem:</span> {project.problem}
+                  </p>
+                  <p className="text-sm leading-7 text-slate-600">
+                    <span className="font-semibold text-slate-900">Solution:</span> {project.solution}
+                  </p>
 
-                <div className="flex flex-wrap gap-2">
-                  {project.stack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-700"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+                  <div className="flex flex-wrap gap-2">
+                    {project.stack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-700"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
 
-                <div className="grid gap-2">
-                  {project.features.map((feature) => (
-                    <p key={feature} className="flex items-start gap-2 text-sm text-slate-600">
-                      <BadgeCheck size={16} className="mt-0.5 shrink-0 text-blue-600" />
-                      {feature}
-                    </p>
-                  ))}
+                  <div className="grid gap-2">
+                    {project.features.map((feature) => (
+                      <p key={feature} className="flex items-start gap-2 text-sm text-slate-600">
+                        <BadgeCheck size={16} className="mt-0.5 shrink-0 text-blue-600" />
+                        {feature}
+                      </p>
+                    ))}
+                  </div>
                 </div>
-              </div>
             </article>
           </Reveal>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

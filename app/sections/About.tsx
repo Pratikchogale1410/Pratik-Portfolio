@@ -15,8 +15,21 @@ export function AboutSection() {
       </Reveal>
 
       <div className="grid items-center gap-8 md:grid-cols-2">
+        <Reveal delay={0.05}>
+          <div className="order-1 mx-auto w-full max-w-md md:order-2">
+            <div className="relative h-[400px] w-full overflow-hidden rounded-2xl shadow-lg shadow-slate-900/10 ring-1 ring-slate-200 md:h-[450px]">
+              <Image
+                src="/images/profile.jpg"
+                alt="Pratik Chogale"
+                fill
+                className="object-cover"
+                sizes="(min-width: 768px) 28rem, 100vw"
+              />
+            </div>
+          </div>
+        </Reveal>
         <Reveal>
-          <article className="glass-card rounded-2xl p-7">
+          <article className="glass-card order-2 rounded-2xl p-7 md:order-1">
             <p className="leading-8 text-slate-700">{aboutSummary}</p>
             <div className="mt-6 grid gap-2 text-sm text-slate-600">
               <p>- BSc IT Graduate</p>
@@ -24,18 +37,6 @@ export function AboutSection() {
               <p>- Built CRM and AI-powered application workflows</p>
             </div>
           </article>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <div className="mx-auto flex h-64 w-64 items-center justify-center rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 to-indigo-50 shadow-sm">
-            <div className="relative h-full w-full overflow-hidden rounded-3xl">
-              <Image
-                src="/profile.svg"
-                alt="Pratik Chogale photo"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
         </Reveal>
       </div>
     </section>
