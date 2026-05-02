@@ -76,7 +76,7 @@ export const projects = [
       "EV users often struggle to quickly discover nearby charging points with clear, mobile-friendly interfaces.",
     solution:
       "Created a location-based station finder with clean navigation and responsive map-ready search experience.",
-    stack: ["Django", "JavaScript", "HTML", "CSS", "Bootstrap"],
+    stack: ["Python", "Django", "JavaScript", "HTML", "CSS", "Bootstrap"],
     features: [
       "Location-aware search for nearby charging stations",
       "Mobile-first UI for quick access while traveling",
