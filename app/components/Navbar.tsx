@@ -32,11 +32,17 @@ export function Navbar() {
               {item.label}
             </a>
           ))}
+          <a
+            href="#contact"
+            className="inline-flex items-center rounded-full border border-blue-600 bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+          >
+            Hire Me
+          </a>
         </div>
       </nav>
 
       <div className="fixed inset-x-0 bottom-4 z-40 mx-auto flex max-w-6xl justify-center px-4 md:hidden">
-        <div className="flex items-center gap-5 rounded-full border border-slate-200 bg-white/90 px-5 py-3 shadow-sm backdrop-blur-xl">
+        <div className="flex items-center gap-5 rounded-none border border-slate-200 bg-white/90 px-6 py-4 shadow-sm backdrop-blur-xl">
           {navItems.map((item) => (
             <a
               key={item.label}

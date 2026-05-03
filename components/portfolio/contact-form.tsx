@@ -67,7 +67,7 @@ export function ContactForm() {
           rows={5}
           value={form.message}
           onChange={(event) => setForm((prev) => ({ ...prev, message: event.target.value }))}
-          placeholder="Tell me about your project or role..."
+          placeholder="Tell me about your project, role, or what you want built..."
           className="w-full resize-none rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-colors focus:border-blue-500"
         />
       </div>
