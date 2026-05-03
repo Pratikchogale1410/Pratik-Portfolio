@@ -53,12 +53,13 @@ export function ProjectsSection() {
           return (
             <Reveal key={project.id} delay={index * 0.07}>
               <article className="glass-card group grid overflow-hidden rounded-3xl border-slate-200 md:grid-cols-5">
-                <div className="relative min-h-56 md:col-span-2">
+                <div className="relative h-[240px] overflow-hidden rounded-2xl bg-slate-50 md:col-span-2 md:h-full md:min-h-56 md:rounded-none">
                   <Image
                     src={project.image}
                     alt={`${project.name} preview`}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-[1.01]"
+                    sizes="(min-width: 768px) 40vw, 100vw"
                   />
                 </div>
                 <div className="space-y-5 p-6 md:col-span-3 md:p-8">

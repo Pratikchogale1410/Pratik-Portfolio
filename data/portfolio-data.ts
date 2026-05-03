@@ -35,7 +35,7 @@ export const projects = [
     id: "applysathi",
     category: "AI Platform",
     name: "ApplySathi",
-    image: "/projects/applysathi.svg",
+    image: "/projects/applysathi.png",
     problem:
       "Job seekers needed practical interview prep and guidance in one platform, but existing tools were fragmented and static.",
     solution:
@@ -53,7 +53,7 @@ export const projects = [
     id: "dermaplastcrm",
     category: "CRM System",
     name: "DermaplastCRM",
-    image: "/projects/dermaplastcrm.svg",
+    image: "/projects/dermaplastcrm.png",
     problem:
       "Healthcare teams needed a system to manage lead conversion, appointment scheduling, and billing in one reliable flow.",
     solution:
