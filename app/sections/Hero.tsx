@@ -1,79 +1,73 @@
 "use client";
 
-import { ArrowRight, MapPin } from "lucide-react";
-import { motion } from "framer-motion";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import { personalInfo } from "@/data/portfolio-data";
+import { Reveal } from "@/app/components/Reveal";
 
 export function HeroSection() {
   return (
-    <section id="home" className="section-shell relative pt-28 pb-20 md:pt-36 md:pb-28">
-      <div className="noise-overlay relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 text-center shadow-sm md:p-14">
-        <div className="pointer-events-none absolute -top-24 left-1/4 h-52 w-52 rounded-full bg-blue-500/10 blur-3xl" />
-        <div className="pointer-events-none absolute right-1/4 -bottom-20 h-56 w-56 rounded-full bg-indigo-500/10 blur-3xl" />
+    <section id="home" className="section-shell pt-28 pb-16 md:pt-36 md:pb-24">
+      <div className="grid items-center gap-12 md:grid-cols-2">
+        <div className="space-y-6">
+          <Reveal>
+            <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs text-blue-700">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-500" />
+              </span>
+              Available for opportunities
+            </div>
+          </Reveal>
 
-        <div className="relative z-10">
-          <motion.p
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs text-slate-600"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-blue-500" />
-            </span>
-            <MapPin size={14} className="text-blue-600" />
-            {personalInfo.location}
-          </motion.p>
+          <Reveal delay={0.1}>
+            <h1 className="font-display text-4xl font-semibold leading-tight text-slate-900 md:text-5xl lg:text-6xl">
+              {personalInfo.name}
+              <span className="mt-2 block text-lg font-medium text-blue-600 md:text-2xl">{personalInfo.role}</span>
+            </h1>
+          </Reveal>
 
-          <motion.h1
-            className="font-display mx-auto max-w-4xl text-4xl leading-tight font-semibold text-slate-900 md:text-6xl"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            {personalInfo.name}
-            <span className="mt-3 block text-xl font-medium text-slate-700 md:text-3xl">{personalInfo.role}</span>
-          </motion.h1>
+          <Reveal delay={0.2}>
+            <p className="max-w-lg text-base leading-relaxed text-slate-600 md:text-lg">
+              {personalInfo.tagline}. I specialize in building production-ready web applications with clean code and thoughtful user experiences.
+            </p>
+          </Reveal>
 
-          <motion.p
-            className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-700"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            {personalInfo.tagline}
-          </motion.p>
-          <motion.p
-            className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-slate-500"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.25 }}
-          >
-            I design clean, production-ready experiences with strong frontend quality and reliable backend workflows.
-          </motion.p>
-
-          <motion.div
-            className="mt-9 flex flex-wrap justify-center gap-4"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <a
-              href="#projects"
-              className="group inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-blue-500"
-            >
-              View Projects
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition-colors hover:border-blue-500 hover:text-blue-600"
-            >
-              Contact Me
-            </a>
-          </motion.div>
+          <Reveal delay={0.3}>
+            <div className="flex flex-wrap gap-4 pt-2">
+              <a
+                href="#projects"
+                className="group inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-blue-500"
+              >
+                View Projects
+                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition-colors hover:border-blue-500 hover:text-blue-600"
+              >
+                Contact Me
+              </a>
+            </div>
+          </Reveal>
         </div>
+
+        <Reveal delay={0.2}>
+          <div className="relative mx-auto w-full max-w-md">
+            <div className="absolute -top-4 -left-4 h-24 w-24 rounded-full bg-blue-100 blur-2xl" />
+            <div className="absolute -right-4 -bottom-4 h-32 w-32 rounded-full bg-indigo-100 blur-2xl" />
+            <div className="relative h-80 w-full overflow-hidden rounded-3xl bg-slate-100 shadow-lg ring-1 ring-slate-200 md:h-96">
+              <Image
+                src="/images/profile.jpg"
+                alt="Pratik Chogale"
+                fill
+                className="object-contain"
+                sizes="(min-width: 768px) 32rem, 100vw"
+                priority
+              />
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

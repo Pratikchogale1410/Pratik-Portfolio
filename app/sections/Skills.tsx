@@ -1,63 +1,49 @@
 "use client";
 
-import { Braces, BriefcaseBusiness, Database, MonitorSmartphone, Server, Sparkles } from "lucide-react";
-import type { ComponentType } from "react";
+import { Code, Database, Server, Sparkles } from "lucide-react";
 import { skillGroups } from "@/data/portfolio-data";
 import { SectionHeading } from "@/app/components/SectionHeading";
 import { Reveal } from "@/app/components/Reveal";
 
-const categoryIcons: Record<string, ComponentType<{ size?: number; className?: string }>> = {
-  Frontend: MonitorSmartphone,
+const categoryIcons: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+  Frontend: Code,
   Backend: Server,
   Database: Database,
-  Tools: BriefcaseBusiness,
-};
-
-const skillIcons: Record<string, ComponentType<{ size?: number; className?: string }>> = {
-  Next: Braces,
-  Firebase: Database,
-  Supabase: Database,
-  SQL: Database,
-  Cursor: Sparkles,
+  "AI & Tools": Sparkles,
 };
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="section-shell py-18 md:py-24">
+    <section id="skills" className="section-shell py-16 md:py-20">
       <Reveal>
         <SectionHeading
           badge="Skills"
-          title="Strong across frontend, backend, and modern developer tools"
-          subtitle="Focused on production-ready implementation with clean UI quality and reliable data workflows."
+          title="Technologies I work with"
+          subtitle="A focused toolkit for building modern web applications."
         />
       </Reveal>
 
-      <div className="grid gap-5 md:grid-cols-2">
-        {skillGroups.map((group, groupIndex) => {
-          const CategoryIcon = categoryIcons[group.category] ?? MonitorSmartphone;
+      <div className="grid gap-6 md:grid-cols-2">
+        {skillGroups.map((group, index) => {
+          const Icon = categoryIcons[group.category] || Code;
           return (
-            <Reveal key={group.category} delay={groupIndex * 0.08}>
-              <article className="glass-card rounded-2xl p-6 transition-transform duration-200 hover:-translate-y-1">
-                <div className="mb-5 flex items-center gap-3">
-                  <CategoryIcon size={18} className="text-blue-600" />
-                  <h3 className="font-display text-xl text-slate-900">{group.category}</h3>
+            <Reveal key={group.category} delay={index * 0.1}>
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+                <div className="mb-4 flex items-center gap-3">
+                  <Icon size={20} className="text-blue-600" />
+                  <h3 className="font-display text-lg text-slate-900">{group.category}</h3>
                 </div>
-              <div className="flex flex-wrap gap-2">
-                {group.skills.map((skill) => {
-                  const key = Object.keys(skillIcons).find((value) => skill.includes(value)) ?? "";
-                  const SkillIcon = skillIcons[key] ?? Braces;
-                  return (
-                    <div
+                <div className="flex flex-wrap gap-2">
+                  {group.skills.map((skill) => (
+                    <span
                       key={skill}
-                      className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-700"
+                      className="rounded-full bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-700"
                     >
-                      <SkillIcon size={12} className="text-blue-600" />
                       {skill}
-                    </div>
-                  );
-                })}
+                    </span>
+                  ))}
+                </div>
               </div>
-              </article>
             </Reveal>
           );
         })}

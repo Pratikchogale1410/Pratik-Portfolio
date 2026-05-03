@@ -1,42 +1,45 @@
-import Image from "next/image";
-import { aboutSummary } from "@/data/portfolio-data";
 import { Reveal } from "@/app/components/Reveal";
 import { SectionHeading } from "@/app/components/SectionHeading";
+import { aboutSummary } from "@/data/portfolio-data";
 
 export function AboutSection() {
   return (
-    <section id="about" className="section-shell py-18 md:py-24">
+    <section id="about" className="section-shell py-16 md:py-20">
       <Reveal>
         <SectionHeading
           badge="About Me"
-          title="Building practical digital products with business impact"
-          subtitle="Product-minded developer with internship experience across AI platforms and workflow-heavy CRM systems."
+          title="Building products that solve real problems"
+          subtitle="Full Stack Developer passionate about creating clean, efficient, and user-focused solutions."
         />
       </Reveal>
 
-      <div className="grid items-center gap-8 md:grid-cols-2">
-        <Reveal delay={0.05}>
-          <div className="order-1 mx-auto w-full max-w-md md:order-2">
-            <div className="relative h-[400px] w-full overflow-hidden rounded-2xl shadow-lg shadow-slate-900/10 ring-1 ring-slate-200 md:h-[450px]">
-              <Image
-                src="/images/profile.jpg"
-                alt="Pratik Chogale"
-                fill
-                className="object-cover"
-                sizes="(min-width: 768px) 28rem, 100vw"
-              />
-            </div>
+      <div className="grid gap-8 md:grid-cols-3">
+        <Reveal delay={0.1} className="md:col-span-2">
+          <div className="space-y-4">
+            <p className="text-base leading-relaxed text-slate-600">
+              {aboutSummary}
+            </p>
+            <p className="text-base leading-relaxed text-slate-600">
+              My journey started with a curiosity for how things work, which led me to build my first web application. Today, I focus on delivering reliable software that serves both users and business goals effectively.
+            </p>
           </div>
         </Reveal>
-        <Reveal>
-          <article className="glass-card order-2 rounded-2xl p-7 md:order-1">
-            <p className="leading-8 text-slate-700">{aboutSummary}</p>
-            <div className="mt-6 grid gap-2 text-sm text-slate-600">
-              <p>- BSc IT Graduate</p>
-              <p>- Full Stack Developer Intern</p>
-              <p>- Built CRM and AI-powered application workflows</p>
+
+        <Reveal delay={0.2}>
+          <div className="space-y-3">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
+              <p className="text-3xl font-semibold text-blue-600">10+</p>
+              <p className="text-sm text-slate-600">Projects Completed</p>
             </div>
-          </article>
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
+              <p className="text-3xl font-semibold text-blue-600">2+</p>
+              <p className="text-sm text-slate-600">Years Experience</p>
+            </div>
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
+              <p className="text-3xl font-semibold text-blue-600">100%</p>
+              <p className="text-sm text-slate-600">Client Satisfaction</p>
+            </div>
+          </div>
         </Reveal>
       </div>
     </section>
