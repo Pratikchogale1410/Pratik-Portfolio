@@ -25,8 +25,8 @@ export const skillGroups = [
     skills: ["SQL"],
   },
   {
-    category: "AI & Tools",
-    skills: ["LLM Integration", "Prompt Engineering", "Cursor AI", "ChatGPT", "Firebase AI"],
+    category: "AI & Developer Tools",
+    skills: ["LLM Integration", "Prompt Engineering", "Cursor AI", "Antigravity", "VS Code", "GitHub"],
   },
 ];
 
