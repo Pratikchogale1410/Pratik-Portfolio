@@ -1,8 +1,8 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { personalInfo } from "@/data/portfolio-data";
 
 const desktopNavItems = [
   { label: "Home", href: "#home" },
@@ -15,7 +15,6 @@ const desktopNavItems = [
 
 export function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -88,44 +87,15 @@ export function Navbar() {
           </a>
         </div>
 
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="flex items-center justify-center rounded-lg p-2 text-slate-600 transition-colors hover:bg-slate-100 md:hidden"
-          aria-label="Toggle menu"
+        <a
+          href={personalInfo.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-blue-600/20 transition-all hover:bg-blue-500 hover:shadow-md hover:shadow-blue-600/25 md:hidden"
         >
-          {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+          Connect
+        </a>
       </nav>
-
-      <motion.div
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ 
-          opacity: mobileMenuOpen ? 1 : 0, 
-          height: mobileMenuOpen ? "auto" : 0 
-        }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="overflow-hidden bg-white md:hidden"
-      >
-        <div className="flex flex-col gap-1 px-5 py-4">
-          {desktopNavItems.map((item) => {
-            const isActive = activeSection === item.href.substring(1);
-            return (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`rounded-lg px-4 py-3 text-base font-medium transition-colors ${
-                  isActive 
-                    ? "bg-blue-50 text-blue-600" 
-                    : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
-                }`}
-              >
-                {item.label}
-              </a>
-            );
-          })}
-        </div>
-      </motion.div>
     </motion.header>
   );
 }
