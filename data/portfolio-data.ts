@@ -71,7 +71,7 @@ export const projects = [
     id: "evfinder",
     category: "Web App",
     name: "EV Charging Station Finder",
-    image: "/projects/evfinder.svg",
+    image: "/projects/EVCS.jpeg",
     problem:
       "EV users often struggle to quickly discover nearby charging points with clear, mobile-friendly interfaces.",
     solution:

@@ -48,6 +48,8 @@ export function ProjectsSection() {
       <div className="space-y-8">
         {visibleProjects.map((project, index) => {
           const isApplySathi = project.id === "applysathi";
+          const isEvFinder = project.id === "evfinder";
+          
           return (
             <Reveal key={project.id} delay={index * 0.1}>
               <div className="group overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-slate-300">
@@ -61,7 +63,11 @@ export function ProjectsSection() {
                       src={project.image}
                       alt={`${project.name} preview`}
                       fill
-                      className="object-contain p-6 transition-transform duration-500 group-hover:scale-105"
+                      className={`${
+                        isEvFinder 
+                          ? "object-contain p-4 md:object-cover md:p-6" 
+                          : "object-contain p-6"
+                      } transition-transform duration-500 group-hover:scale-105`}
                       sizes={isApplySathi ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 33vw, 100vw"}
                     />
                   </div>
@@ -124,15 +130,17 @@ export function ProjectsSection() {
                     </div>
 
                     <div className="flex items-center gap-4 pt-4 border-t border-slate-100">
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700"
-                      >
-                        <ArrowUpRight size={16} />
-                        Live Demo
-                      </a>
+                      {!isEvFinder && (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700"
+                        >
+                          <ArrowUpRight size={16} />
+                          Live Demo
+                        </a>
+                      )}
                       {project.github && project.github !== "https://github.com/" && (
                         <a
                           href={project.github}

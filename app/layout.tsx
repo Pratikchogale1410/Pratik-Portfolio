@@ -3,6 +3,7 @@ import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
+import { BottomNavigation } from "./components/BottomNavigation";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -30,8 +31,9 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${poppins.variable} h-full antialiased`}>
       <body className="min-h-full w-full overflow-x-hidden flex flex-col">
         <Navbar />
-        <div className="flex-1">{children}</div>
+        <div className="flex-1 pb-16 md:pb-0">{children}</div>
         <Footer />
+        <BottomNavigation />
       </body>
     </html>
   );

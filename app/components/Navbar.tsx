@@ -56,9 +56,14 @@ export function Navbar() {
       <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4 md:px-8">
         <a 
           href="#home" 
-          className="font-display text-lg font-bold tracking-tight text-slate-900 transition-colors hover:text-blue-600"
+          className="flex items-center gap-3 font-display text-lg font-bold tracking-tight text-slate-900 transition-colors hover:text-blue-600"
         >
-          PRATIK<span className="text-blue-600">.</span>DEV
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 text-white shadow-sm transition-transform hover:scale-105 md:h-10 md:w-10">
+            <span className="font-display text-lg font-bold md:text-xl">P</span>
+          </div>
+          <span>
+            PRATIK<span className="text-blue-600">.</span>DEV
+          </span>
         </a>
         
         <div className="hidden items-center gap-6 lg:gap-8 md:flex">
