@@ -1,99 +1,64 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import {
-  Home,
-  User,
+  Briefcase,
   Code2,
   FolderOpen,
-  Briefcase,
+  Home,
   Mail,
+  User,
 } from "lucide-react";
 
 const navItems = [
-  { label: "Home", href: "#home", icon: Home },
-  { label: "About", href: "#about", icon: User },
-  { label: "Skills", href: "#skills", icon: Code2 },
-  { label: "Projects", href: "#projects", icon: FolderOpen },
-  { label: "Exp", href: "#experience", icon: Briefcase },
-  { label: "Contact", href: "#contact", icon: Mail },
+  { label: "Home", href: "/", icon: Home },
+  { label: "About", href: "/about", icon: User },
+  { label: "Exp", href: "/experience", icon: Briefcase },
+  { label: "Skills", href: "/skills", icon: Code2 },
+  { label: "Work", href: "/projects", icon: FolderOpen },
+  { label: "Contact", href: "/contact", icon: Mail },
 ];
 
 export function BottomNavigation() {
-  const [activeSection, setActiveSection] = useState("home");
+  const pathname = usePathname();
+  const [activePath, setActivePath] = useState(pathname);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["home", "about", "skills", "projects", "experience", "contact"];
-      const scrollPosition = window.scrollY + window.innerHeight / 3;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetBottom = offsetTop + element.offsetHeight;
-
-          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const handleClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
-  ) => {
-    e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setActivePath(pathname);
+  }, [pathname]);
 
   return (
-    <motion.nav
-      initial={{ y: 100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-      className="fixed bottom-0 left-0 z-50 w-full border-t border-slate-200 bg-white/95 backdrop-blur-sm shadow-[0_-2px_10px_rgba(0,0,0,0.05)] md:hidden"
+    <nav
+      className="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-[#0b0f18]/96 pb-[env(safe-area-inset-bottom)] backdrop-blur-md md:hidden"
+      aria-label="Mobile section navigation"
     >
-      <div className="grid h-16 grid-cols-6 items-center">
+      <div className="grid h-[64px] grid-cols-6 items-stretch">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = activeSection === item.href.substring(1);
+          const isActive = activePath === item.href || (item.href !== "/" && activePath.startsWith(item.href));
           return (
-            <a
+            <Link
               key={item.href}
               href={item.href}
-              onClick={(e) => handleClick(e, item.href)}
-              className="flex flex-col items-center justify-center gap-0.5 text-xs font-medium transition-colors focus:outline-none focus-visible:bg-blue-50"
-              style={{
-                color: isActive ? "#0284c7" : "#64748b",
-              }}
+              className="focus-ring flex min-w-0 flex-col items-center justify-center gap-0.5 px-0.5 text-[10px] font-medium"
               aria-label={`Navigate to ${item.label}`}
               aria-current={isActive ? "page" : undefined}
             >
               <Icon
-                size={20}
+                size={18}
                 strokeWidth={isActive ? 2.5 : 2}
-                className={isActive ? "text-blue-600" : "text-slate-500"}
+                className={isActive ? "text-sky-400" : "text-slate-500"}
               />
-              <span className={`leading-none ${isActive ? "text-blue-600" : "text-slate-500"}`}>
+              <span className={`truncate leading-none ${isActive ? "text-sky-400" : "text-slate-500"}`}>
                 {item.label}
               </span>
-            </a>
+            </Link>
           );
         })}
       </div>
-    </motion.nav>
+    </nav>
   );
 }

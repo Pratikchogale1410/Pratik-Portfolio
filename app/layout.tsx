@@ -1,25 +1,39 @@
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Manrope, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { BottomNavigation } from "./components/BottomNavigation";
+import { ScrollProgress } from "./components/ScrollProgress";
+import { AnimatedBackground } from "./components/AnimatedBackground";
 
-const inter = Inter({
-  variable: "--font-inter",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
 });
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space",
   subsets: ["latin"],
   weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Pratik Chogale | Full Stack Developer",
+  title: "Pratik Chogale — Full Stack Developer | AI & Web Applications",
   description:
-    "Premium portfolio of Pratik Chogale, Full Stack Developer building scalable and AI-powered web applications.",
+    "Full Stack Developer building production-ready AI-powered applications, CRM systems, and scalable web products with Next.js, Firebase, Supabase, and Convex.",
+  openGraph: {
+    title: "Pratik Chogale — Full Stack Developer",
+    description:
+      "Production-ready AI applications, CRM systems, database optimization, and full-stack product development.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pratik Chogale — Full Stack Developer",
+    description:
+      "AI-powered applications, CRM systems, and scalable web products.",
+  },
 };
 
 export default function RootLayout({
@@ -28,10 +42,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable} h-full antialiased`}>
-      <body className="min-h-full w-full overflow-x-hidden flex flex-col">
+    <html lang="en" className={`${manrope.variable} ${spaceGrotesk.variable} h-full antialiased`}>
+      <body className="flex min-h-full w-full flex-col overflow-x-hidden bg-[var(--background)] text-[var(--foreground)]">
+        <AnimatedBackground />
+        <ScrollProgress />
         <Navbar />
-        <div className="flex-1 pb-16 md:pb-0">{children}</div>
+        <div className="flex-1 pb-20 md:pb-0">{children}</div>
         <Footer />
         <BottomNavigation />
       </body>

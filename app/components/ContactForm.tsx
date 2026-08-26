@@ -45,47 +45,48 @@ export function ContactForm() {
     }
   };
 
+  const fieldClass =
+    "focus-ring w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-sky-400/50";
+
   return (
     <form onSubmit={onSubmit} className="space-y-4">
-      <div className="space-y-4">
-        <input
-          required
-          value={form.name}
-          onChange={(event) => setForm((prev) => ({ ...prev, name: event.target.value }))}
-          placeholder="Your Name"
-          className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-colors focus:border-blue-500"
-        />
-        <input
-          required
-          type="email"
-          value={form.email}
-          onChange={(event) => setForm((prev) => ({ ...prev, email: event.target.value }))}
-          placeholder="Your Email"
-          className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-colors focus:border-blue-500"
-        />
-        <textarea
-          required
-          rows={5}
-          value={form.message}
-          onChange={(event) => setForm((prev) => ({ ...prev, message: event.target.value }))}
-          placeholder="Tell me about your project or opportunity..."
-          className="w-full resize-none rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-colors focus:border-blue-500"
-        />
-      </div>
+      <input
+        required
+        value={form.name}
+        onChange={(event) => setForm((prev) => ({ ...prev, name: event.target.value }))}
+        placeholder="Your Name"
+        className={fieldClass}
+      />
+      <input
+        required
+        type="email"
+        value={form.email}
+        onChange={(event) => setForm((prev) => ({ ...prev, email: event.target.value }))}
+        placeholder="Your Email"
+        className={fieldClass}
+      />
+      <textarea
+        required
+        rows={5}
+        value={form.message}
+        onChange={(event) => setForm((prev) => ({ ...prev, message: event.target.value }))}
+        placeholder="Tell me about your project or opportunity..."
+        className={`${fieldClass} resize-none`}
+      />
 
       <button
         type="submit"
         disabled={!isValid || isSubmitting}
-        className="w-full rounded-lg bg-blue-600 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-500 disabled:cursor-not-allowed disabled:bg-slate-300"
+        className="focus-ring w-full rounded-xl bg-blue-500 py-3 text-sm font-semibold text-white transition hover:bg-blue-400 disabled:cursor-not-allowed disabled:opacity-50"
       >
         {isSubmitting ? "Sending..." : "Send Message"}
       </button>
 
-      {status.message && (
-        <p className={`text-sm ${status.type === "success" ? "text-emerald-600" : "text-rose-600"}`}>
+      {status.message ? (
+        <p className={`text-sm ${status.type === "success" ? "text-emerald-400" : "text-rose-400"}`}>
           {status.message}
         </p>
-      )}
+      ) : null}
     </form>
   );
 }

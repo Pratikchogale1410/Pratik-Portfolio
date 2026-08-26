@@ -1,53 +1,90 @@
-import { experiences } from "@/data/portfolio-data";
+"use client";
+
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+import { contributions, experiences } from "@/data/portfolio-data";
 import { Reveal } from "@/app/components/Reveal";
 import { SectionHeading } from "@/app/components/SectionHeading";
-import { Briefcase } from "lucide-react";
 
 export function ExperienceSection() {
+  const [expanded, setExpanded] = useState(true);
+
   return (
-    <section id="experience" className="section-shell py-10 md:py-12">
+    <section id="experience" className="section-shell py-18 md:py-24">
       <Reveal>
         <SectionHeading
           badge="Experience"
-          title="Work experience"
-          subtitle="Professional experience building products with measurable impact in real-world environments."
+          title="Impact-focused product development"
+          subtitle="Full-stack ownership across AI platforms, CRM systems, and production workflows."
         />
       </Reveal>
 
-      <div className="relative space-y-4">
-        <div className="absolute left-6 top-2 h-full w-px bg-slate-200 md:left-8" />
-        
-        {experiences.map((exp, index) => (
-          <Reveal key={exp.role} delay={index * 0.1}>
-            <div className="relative pl-12 md:pl-16">
-              <div className="absolute left-4 top-2 h-5 w-5 rounded-full border-4 border-white bg-blue-600 shadow-md md:left-8" />
-              <div className="rounded-2xl bg-white p-6 border border-slate-200 shadow-sm transition-all hover:shadow-lg hover:border-slate-300">
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 border border-blue-100">
-                      <Briefcase size={20} className="text-blue-600" />
-                    </div>
-                    <div>
-                      <h3 className="font-display text-lg font-bold text-slate-900">{exp.role}</h3>
-                      <p className="text-sm font-medium text-blue-600">{exp.company}</p>
-                    </div>
-                  </div>
-                  <span className="rounded-lg bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600 border border-slate-200">
-                    {exp.period}
-                  </span>
+      <div className="space-y-6">
+        {experiences.map((experience) => (
+          <Reveal key={experience.role}>
+            <article className="glass-card rounded-[1.5rem] p-6 md:p-8">
+              <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-sky-400">
+                    {experience.period}
+                  </p>
+                  <h3 className="mt-2 font-display text-2xl text-white">{experience.role}</h3>
+                  <p className="mt-1 text-sm text-slate-400">{experience.company}</p>
                 </div>
-                <ul className="mt-5 space-y-2.5 pl-1">
-                  {exp.points.map((point) => (
-                    <li key={point} className="flex items-start gap-3 text-sm leading-relaxed text-slate-600">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400" />
+                <div className="flex flex-wrap gap-2">
+                  {experience.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-300"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setExpanded((value) => !value)}
+                className="focus-ring mt-6 inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-sm text-slate-200 transition hover:border-sky-400/40"
+              >
+                Responsibilities &amp; Contributions
+                <ChevronDown
+                  size={16}
+                  className={`transition-transform ${expanded ? "rotate-180" : ""}`}
+                />
+              </button>
+
+              {expanded ? (
+                <ul className="mt-5 space-y-3 border-t border-white/10 pt-5">
+                  {experience.points.map((point) => (
+                    <li key={point} className="text-sm leading-7 text-slate-400">
+                      <span className="mr-2 text-sky-400">▹</span>
                       {point}
                     </li>
                   ))}
                 </ul>
-              </div>
-            </div>
+              ) : null}
+            </article>
           </Reveal>
         ))}
+
+        <Reveal delay={0.08}>
+          <div>
+            <h3 className="mb-4 font-display text-xl text-white">Key project contributions</h3>
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {contributions.map((item) => (
+                <article
+                  key={item.title}
+                  className="glass-card rounded-[1.25rem] p-5 transition hover:-translate-y-1 hover:border-sky-400/30"
+                >
+                  <h4 className="font-medium text-white">{item.title}</h4>
+                  <p className="mt-2 text-sm leading-7 text-slate-400">{item.detail}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

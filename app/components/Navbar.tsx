@@ -1,104 +1,89 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { personalInfo } from "@/data/portfolio-data";
-
-const desktopNavItems = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
-];
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { navItems, personalInfo } from "@/data/portfolio-data";
 
 export function Navbar() {
-  const [activeSection, setActiveSection] = useState("home");
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-      
-      const sections = ["home", "about", "skills", "projects", "experience", "contact"];
-      const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetHeight = element.offsetHeight;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
+      setScrolled(window.scrollY > 24);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(href + "/");
+  };
+
   return (
     <motion.header
-      initial={{ opacity: 0, y: -20 }}
+      initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? "bg-white/90 backdrop-blur-md shadow-sm" 
-          : "bg-transparent"
+      transition={{ duration: 0.45 }}
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "border-b border-white/10 bg-[#07090f]/80 py-0 backdrop-blur-xl"
+          : "bg-transparent py-1"
       }`}
     >
-      <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4 md:px-8">
-        <a 
-          href="#home" 
-          className="flex items-center gap-3 font-display text-lg font-bold tracking-tight text-slate-900 transition-colors hover:text-blue-600"
-        >
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 text-white shadow-sm transition-transform hover:scale-105 md:h-10 md:w-10">
-            <span className="font-display text-lg font-bold md:text-xl">P</span>
-          </div>
-          <span>
-            PRATIK<span className="text-blue-600">.</span>DEV
+      <nav
+        className={`section-shell flex items-center justify-between transition-all duration-300 ${
+          scrolled ? "py-3" : "py-4"
+        }`}
+      >
+        <Link href="/" className="focus-ring group flex items-center gap-3">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500 text-sm font-bold text-white shadow-[0_0_24px_rgba(59,130,246,0.35)] transition-transform group-hover:scale-105">
+            P
           </span>
-        </a>
-        
-        <div className="hidden items-center gap-6 lg:gap-8 md:flex">
-          {desktopNavItems.map((item) => {
-            const isActive = activeSection === item.href.substring(1);
+          <span className="font-display text-sm font-semibold tracking-wide text-white md:text-base">
+            {personalInfo.name.split(" ")[0].toUpperCase()}
+            <span className="text-sky-400">.DEV</span>
+          </span>
+        </Link>
+
+        <div className="hidden items-center gap-6 md:flex lg:gap-7">
+          {navItems.map((item) => {
+            const active = isActive(item.href);
             return (
-              <a
-                key={item.label}
+              <Link
+                key={item.href}
                 href={item.href}
-                className={`relative text-sm font-medium transition-colors duration-200 ${
-                  isActive ? "text-blue-600" : "text-slate-600 hover:text-slate-900"
+                className={`focus-ring relative text-sm transition-colors ${
+                  active ? "text-white" : "text-slate-400 hover:text-white"
                 }`}
               >
                 {item.label}
-                {isActive && (
-                  <span className="absolute -bottom-1 left-0 h-0.5 w-full bg-blue-600 rounded-full" />
-                )}
-              </a>
+                {active ? (
+                  <span className="absolute -bottom-1 left-0 h-0.5 w-full rounded-full bg-sky-400" />
+                ) : null}
+              </Link>
             );
           })}
-          <a
-            href="#contact"
-            className="inline-flex items-center rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-600/20 transition-all hover:bg-blue-500 hover:shadow-md hover:shadow-blue-600/25"
+          <Link
+            href="/contact"
+            className="focus-ring inline-flex rounded-full bg-blue-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-400"
           >
-            Get in Touch
-          </a>
+            Contact
+          </Link>
         </div>
 
         <a
           href={personalInfo.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-blue-600/20 transition-all hover:bg-blue-500 hover:shadow-md hover:shadow-blue-600/25 md:hidden"
+          className="focus-ring inline-flex rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-200 md:hidden"
         >
-          Connect
+          LinkedIn
         </a>
       </nav>
     </motion.header>
