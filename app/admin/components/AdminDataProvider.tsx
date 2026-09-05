@@ -11,6 +11,7 @@ import {
 } from "react";
 import type { CmsSiteData } from "@/lib/cms/types";
 import { createDefaultSiteData } from "@/lib/cms/defaults";
+import { useUnsavedChanges } from "./UnsavedChangesProvider";
 
 type AdminDataContextValue = {
   data: CmsSiteData;
@@ -31,6 +32,8 @@ export function AdminDataProvider({ children }: { children: ReactNode }) {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [lastSavedData, setLastSavedData] = useState<string | null>(null);
+  const { setHasUnsavedChanges } = useUnsavedChanges();
 
   const reload = useCallback(async () => {
     setLoading(true);
@@ -40,12 +43,14 @@ export function AdminDataProvider({ children }: { children: ReactNode }) {
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "Failed to load");
       setData(json.data);
+      setLastSavedData(JSON.stringify(json.data));
+      setHasUnsavedChanges(false);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to load");
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [setHasUnsavedChanges]);
 
   useEffect(() => {
     const id = setTimeout(() => {
@@ -69,6 +74,8 @@ export function AdminDataProvider({ children }: { children: ReactNode }) {
         const json = await res.json();
         if (!res.ok) throw new Error(json.error || "Failed to save");
         setData(json.data);
+        setLastSavedData(JSON.stringify(json.data));
+        setHasUnsavedChanges(false);
         setMessage(json.message || "Changes saved successfully");
         return true;
       } catch (err) {
@@ -78,8 +85,15 @@ export function AdminDataProvider({ children }: { children: ReactNode }) {
         setSaving(false);
       }
     },
-    [data],
+    [data, setHasUnsavedChanges],
   );
+
+  useEffect(() => {
+    if (lastSavedData === null) return;
+    const current = JSON.stringify(data);
+    const changed = current !== lastSavedData;
+    setHasUnsavedChanges(changed);
+  }, [data, lastSavedData, setHasUnsavedChanges]);
 
   const value = useMemo(
     () => ({ data, setData, loading, saving, message, error, reload, save }),

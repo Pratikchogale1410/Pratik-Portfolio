@@ -1,42 +1,100 @@
-import { personalInfo, navItems } from "@/data/portfolio-data";
 import Link from "next/link";
+import { Mail } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "./social-icons";
+import { personalInfo } from "@/data/portfolio-data";
+
+const footerNav = [
+  { label: "Services", href: "#services" },
+  { label: "Impact", href: "#impact" },
+  { label: "Experience", href: "#experience" },
+  { label: "Technology", href: "#technology" },
+  { label: "Projects", href: "#work" },
+  { label: "Agent Mail", href: "#agent-mail" },
+  { label: "Contact", href: "#contact" },
+];
 
 export function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="border-t border-white/10 bg-[#05070c] pb-24 md:pb-0">
-      <div className="section-shell flex flex-col gap-8 py-10 md:flex-row md:items-start md:justify-between">
-        <div>
-          <p className="font-display text-lg font-semibold text-white">{personalInfo.name}</p>
-          <p className="mt-1 text-sm text-slate-400">{personalInfo.role}</p>
+    <footer className="border-t border-[var(--border)] bg-[var(--background)]">
+      <div className="section-shell py-12 md:py-16">
+        <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
+          <div>
+            <p className="font-display text-[15px] font-semibold tracking-tight">
+              PRATIK<span className="text-[var(--accent)]">.DEV</span>
+            </p>
+            <p className="mt-3 text-[15px] font-semibold text-[var(--foreground)]">
+              {personalInfo.name}
+            </p>
+            <p className="mt-1 text-sm text-[var(--foreground-muted)]">
+              {personalInfo.role}
+            </p>
+            <p className="mt-4 max-w-xs text-sm leading-6 text-[var(--foreground-subtle)]">
+              Building production-ready AI applications, CRM systems, and
+              scalable web products.
+            </p>
+          </div>
+
+          <div>
+            <p className="eyebrow-muted mb-4">Navigation</p>
+            <ul className="space-y-2">
+              {footerNav.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="eyebrow-muted mb-4">Connect</p>
+            <ul className="space-y-2">
+              <li>
+                <a
+                  href={personalInfo.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
+                >
+                  <LinkedinIcon size={14} /> LinkedIn
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/Pratikchogale1410"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
+                >
+                  <GithubIcon size={14} /> GitHub
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${personalInfo.email}`}
+                  className="inline-flex items-center gap-2 text-sm text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
+                >
+                  <Mail size={14} /> Email
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div className="flex flex-wrap gap-4 text-sm text-slate-400">
-          {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className="transition hover:text-white">
-              {item.label}
-            </Link>
-          ))}
+        <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-[var(--border-soft)] pt-6 md:flex-row md:items-center">
+          <p className="text-xs text-[var(--foreground-subtle)]">
+            © {year} {personalInfo.name}. All rights reserved.
+          </p>
+          <p className="text-xs text-[var(--foreground-subtle)]">
+            {personalInfo.location}
+          </p>
         </div>
-
-        <div className="flex flex-wrap gap-4 text-sm">
-          <a
-            href={`mailto:${personalInfo.email}`}
-            className="text-slate-400 transition hover:text-sky-400"
-          >
-            Email
-          </a>
-          <a
-            href={personalInfo.linkedin}
-            target="_blank"
-            rel="noreferrer"
-            className="text-slate-400 transition hover:text-sky-400"
-          >
-            LinkedIn
-          </a>
-        </div>
-      </div>
-      <div className="border-t border-white/5 py-4 text-center text-xs text-slate-500">
-        © {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
       </div>
     </footer>
   );

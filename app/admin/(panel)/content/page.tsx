@@ -39,7 +39,7 @@ export default function AdminContentPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-end justify-between gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-semibold">Content</h1>
           <p className="mt-1 text-sm text-slate-500">Personal info, hero, about, and highlights.</p>
@@ -48,7 +48,8 @@ export default function AdminContentPage() {
           <button
             type="button"
             onClick={() => void reload()}
-            className="rounded-xl border border-slate-300 px-4 py-2 text-sm"
+            disabled={saving}
+            className="rounded-xl border border-slate-300 px-4 py-2 text-sm hover:bg-slate-50 disabled:opacity-60"
           >
             Cancel
           </button>
@@ -56,15 +57,23 @@ export default function AdminContentPage() {
             type="button"
             disabled={saving}
             onClick={() => void save()}
-            className="rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white disabled:opacity-60"
+            className="rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800 disabled:opacity-60"
           >
             {saving ? "Saving..." : "Save Changes"}
           </button>
         </div>
       </div>
 
-      {message ? <p className="text-sm text-emerald-600">✓ {message}</p> : null}
-      {error ? <p className="text-sm text-rose-600">{error}</p> : null}
+      {message ? (
+        <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">
+          ✓ {message}
+        </div>
+      ) : null}
+      {error ? (
+        <div className="rounded-xl border border-rose-200 bg-rose-50 p-3 text-sm text-rose-700">
+          {error}
+        </div>
+      ) : null}
 
       <section className="space-y-4 rounded-2xl border border-slate-200 bg-white p-5">
         <h2 className="font-semibold">Personal Information</h2>
@@ -222,7 +231,7 @@ export default function AdminContentPage() {
           <h2 className="font-semibold">Highlights</h2>
           <button
             type="button"
-            className="rounded-lg border border-slate-300 px-3 py-1.5 text-sm"
+            className="rounded-lg border border-slate-300 px-3 py-1.5 text-sm hover:bg-slate-50"
             onClick={() =>
               setData((prev) => ({
                 ...prev,
@@ -240,48 +249,51 @@ export default function AdminContentPage() {
             Add highlight
           </button>
         </div>
-        {data.highlights.map((item, index) => (
-          <div key={item.id} className="space-y-3 rounded-xl border border-slate-200 p-4">
-            <Field
-              label="Title"
-              value={item.title}
-              onChange={(value) =>
-                setData((prev) => {
-                  const highlights = [...prev.highlights];
-                  highlights[index] = { ...highlights[index], title: value };
-                  return { ...prev, highlights };
-                })
-              }
-            />
-            <Field
-              label="Detail"
-              multiline
-              value={item.detail}
-              onChange={(value) =>
-                setData((prev) => {
-                  const highlights = [...prev.highlights];
-                  highlights[index] = { ...highlights[index], detail: value };
-                  return { ...prev, highlights };
-                })
-              }
-            />
-            <button
-              type="button"
-              className="text-sm text-rose-600"
-              onClick={() => {
-                if (!confirm("Delete this highlight?")) return;
-                setData((prev) => ({
-                  ...prev,
-                  highlights: prev.highlights.filter((h) => h.id !== item.id),
-                }));
-              }}
-            >
-              Delete
-            </button>
-          </div>
-        ))}
+        <div className="space-y-3">
+          {data.highlights.map((item, index) => (
+            <div key={item.id} className="space-y-3 rounded-xl border border-slate-200 p-4">
+              <div className="grid gap-3 md:grid-cols-2">
+                <Field
+                  label="Title"
+                  value={item.title}
+                  onChange={(value) =>
+                    setData((prev) => {
+                      const highlights = [...prev.highlights];
+                      highlights[index] = { ...highlights[index], title: value };
+                      return { ...prev, highlights };
+                    })
+                  }
+                />
+                <Field
+                  label="Detail"
+                  multiline
+                  value={item.detail}
+                  onChange={(value) =>
+                    setData((prev) => {
+                      const highlights = [...prev.highlights];
+                      highlights[index] = { ...highlights[index], detail: value };
+                      return { ...prev, highlights };
+                    })
+                  }
+                />
+              </div>
+              <button
+                type="button"
+                className="text-sm text-rose-600 hover:text-rose-700"
+                onClick={() => {
+                  if (!confirm("Delete this highlight?")) return;
+                  setData((prev) => ({
+                    ...prev,
+                    highlights: prev.highlights.filter((h) => h.id !== item.id),
+                  }));
+                }}
+              >
+                Delete
+              </button>
+            </div>
+          ))}
+        </div>
       </section>
-
     </div>
   );
 }

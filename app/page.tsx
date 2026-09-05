@@ -1,25 +1,26 @@
-import { HeroSection } from "./sections/Hero";
-import { AboutSection } from "./sections/About";
-import { HighlightsSection } from "./sections/Highlights";
-import { ExperienceSection } from "./sections/Experience";
-import { SkillsSection } from "./sections/Skills";
-import { ProjectsSection } from "./sections/Projects";
-import { ContactSection } from "./sections/Contact";
+import { HeroSection } from "./sections/portfolio/hero";
+import { CapabilitiesSection } from "./sections/portfolio/capabilities";
+import { ImpactSection } from "./sections/portfolio/impact";
+import { SelectedWorkSection } from "./sections/portfolio/selected-work";
+import { DeveloperSection } from "./sections/portfolio/developer";
+import { ExperienceSection } from "./sections/portfolio/experience";
+import { ProcessSection } from "./sections/portfolio/process";
+import { TechnologySection } from "./sections/portfolio/technology";
+import { AgentMailSection } from "./sections/portfolio/agent-mail";
+import { ContactSection } from "./sections/portfolio/contact";
 
 export default function Home() {
   return (
-    <main className="relative">
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-[-10%] top-0 h-[28rem] w-[28rem] rounded-full bg-blue-500/10 blur-3xl" />
-        <div className="absolute right-[-8%] top-[35%] h-[26rem] w-[26rem] rounded-full bg-cyan-400/10 blur-3xl" />
-        <div className="absolute bottom-[10%] left-[20%] h-[22rem] w-[22rem] rounded-full bg-indigo-500/10 blur-3xl" />
-      </div>
+    <main className="bg-[var(--background)]">
       <HeroSection />
-      <AboutSection />
-      <HighlightsSection />
+      <CapabilitiesSection />
+      <ImpactSection />
+      <SelectedWorkSection />
+      <DeveloperSection />
       <ExperienceSection />
-      <SkillsSection />
-      <ProjectsSection />
+      <ProcessSection />
+      <TechnologySection />
+      <AgentMailSection />
       <ContactSection />
     </main>
   );

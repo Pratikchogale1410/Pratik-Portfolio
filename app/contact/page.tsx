@@ -1,5 +1,9 @@
-import { ContactSection } from "../sections/Contact";
+import { ContactSection } from "../sections/portfolio/contact";
 
 export default function ContactPage() {
-  return <ContactSection />;
+  return (
+    <main>
+      <ContactSection />
+    </main>
+  );
 }

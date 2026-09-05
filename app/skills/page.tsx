@@ -1,5 +1,9 @@
-import { SkillsSection } from "../sections/Skills";
+import { TechnologySection } from "../sections/portfolio/technology";
 
 export default function SkillsPage() {
-  return <SkillsSection />;
+  return (
+    <main>
+      <TechnologySection />
+    </main>
+  );
 }

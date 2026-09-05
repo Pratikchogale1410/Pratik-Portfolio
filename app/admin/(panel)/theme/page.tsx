@@ -8,11 +8,6 @@ export default function AdminThemePage() {
   const { data, setData, save, saving, message, error, reload } = useAdminData();
   const [draft, setDraft] = useState(data.theme);
 
-  // Keep draft synced when data reloads
-  if (draft.preset !== data.theme.preset && JSON.stringify(draft) === JSON.stringify(data.theme) === false) {
-    // no-op guard; we sync explicitly via buttons
-  }
-
   const applyPreset = (preset: keyof typeof THEME_PRESETS) => {
     const next = { ...THEME_PRESETS[preset] };
     setDraft(next);
@@ -21,19 +16,20 @@ export default function AdminThemePage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-end justify-between gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-2xl font-semibold">Theme</h1>
           <p className="mt-1 text-sm text-slate-500">Adjust colors and presets. Save to publish.</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <button
             type="button"
             onClick={() => {
               setDraft(data.theme);
               void reload();
             }}
-            className="rounded-xl border border-slate-300 px-4 py-2 text-sm"
+            disabled={saving}
+            className="rounded-xl border border-slate-300 px-4 py-2 text-sm hover:bg-slate-50 disabled:opacity-60"
           >
             Cancel
           </button>
@@ -45,15 +41,23 @@ export default function AdminThemePage() {
               setData(next);
               await save(next);
             }}
-            className="rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white disabled:opacity-60"
+            className="rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800 disabled:opacity-60"
           >
             {saving ? "Saving..." : "Save Changes"}
           </button>
         </div>
       </div>
 
-      {message ? <p className="text-sm text-emerald-600">✓ {message}</p> : null}
-      {error ? <p className="text-sm text-rose-600">{error}</p> : null}
+      {message ? (
+        <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">
+          ✓ {message}
+        </div>
+      ) : null}
+      {error ? (
+        <div className="rounded-xl border border-rose-200 bg-rose-50 p-3 text-sm text-rose-700">
+          {error}
+        </div>
+      ) : null}
 
       <div className="flex flex-wrap gap-2">
         {(Object.keys(THEME_PRESETS) as Array<keyof typeof THEME_PRESETS>).map((preset) => (
@@ -61,7 +65,7 @@ export default function AdminThemePage() {
             key={preset}
             type="button"
             onClick={() => applyPreset(preset)}
-            className="rounded-full border border-slate-300 px-4 py-2 text-sm capitalize"
+            className="rounded-full border border-slate-300 px-4 py-2 text-sm capitalize hover:bg-slate-50"
           >
             {preset}
           </button>

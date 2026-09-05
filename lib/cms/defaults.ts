@@ -37,7 +37,7 @@ export function createDefaultSiteData(): CmsSiteData {
     hero: {
       heading: personalInfo.name,
       subtitle: personalInfo.role,
-      description: personalInfo.summary,
+      description: "Building production-ready AI-powered applications, CRM systems & scalable web products.",
       ctaText: "View My Work",
       ctaUrl: "#projects",
       highlights: [...heroHighlights],

@@ -1,91 +1,81 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { navItems, personalInfo } from "@/data/portfolio-data";
+
+const LINKEDIN_URL = "https://linkedin.com/in/pratik-chogale";
+
+const navItems = [
+  { label: "Services", href: "/#services" },
+  { label: "Impact", href: "/#impact" },
+  { label: "Experience", href: "/experience" },
+  { label: "Projects", href: "/projects" },
+  { label: "Technology", href: "/#technology" },
+  { label: "Contact", href: "/#contact" },
+];
 
 export function Navbar() {
-  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 24);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const isActive = (href: string) => {
-    if (href === "/") return pathname === "/";
-    return pathname === href || pathname.startsWith(href + "/");
-  };
-
   return (
-    <motion.header
-      initial={{ opacity: 0, y: -16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45 }}
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-white/10 bg-[#07090f]/80 py-0 backdrop-blur-xl"
-          : "bg-transparent py-1"
-      }`}
-    >
-      <nav
-        className={`section-shell flex items-center justify-between transition-all duration-300 ${
-          scrolled ? "py-3" : "py-4"
-        }`}
-      >
-        <Link href="/" className="focus-ring group flex items-center gap-3">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500 text-sm font-bold text-white shadow-[0_0_24px_rgba(59,130,246,0.35)] transition-transform group-hover:scale-105">
-            P
-          </span>
-          <span className="font-display text-sm font-semibold tracking-wide text-white md:text-base">
-            {personalInfo.name.split(" ")[0].toUpperCase()}
-            <span className="text-sky-400">.DEV</span>
-          </span>
-        </Link>
+    <header className="fixed inset-x-0 top-0 z-50">
+      <div className="section-shell pt-3 md:pt-4">
+        <div
+          className={`flex h-14 items-center justify-between gap-3 rounded-xl border border-[var(--border)] bg-white px-3.5 shadow-[3px_3px_0_0_rgba(10,10,10,1)] transition-shadow duration-200 md:h-[60px] md:px-5 ${
+            scrolled ? "shadow-[4px_4px_0_0_rgba(10,10,10,1)]" : ""
+          }`}
+        >
+          <a
+            href="/#top"
+            className="flex shrink-0 items-center gap-2 text-[var(--foreground)]"
+          >
+            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-[var(--accent)] font-display text-[13px] font-bold leading-none text-white shadow-[1.5px_1.5px_0_0_rgba(10,10,10,1)]">
+              P
+            </span>
+            <span className="font-display text-[14px] font-semibold tracking-tight md:text-[15px]">
+              PRATIK<span className="text-[var(--accent)]">.DEV</span>
+            </span>
+          </a>
 
-        <div className="hidden items-center gap-6 md:flex lg:gap-7">
-          {navItems.map((item) => {
-            const active = isActive(item.href);
-            return (
-              <Link
+          <nav className="hidden items-center justify-center gap-1 lg:flex">
+            {navItems.map((item) => (
+              <a
                 key={item.href}
                 href={item.href}
-                className={`focus-ring relative text-sm transition-colors ${
-                  active ? "text-white" : "text-slate-400 hover:text-white"
-                }`}
+                className="rounded-md px-3 py-2 text-[11.5px] font-semibold uppercase tracking-[0.12em] text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
               >
                 {item.label}
-                {active ? (
-                  <span className="absolute -bottom-1 left-0 h-0.5 w-full rounded-full bg-sky-400" />
-                ) : null}
-              </Link>
-            );
-          })}
-          <Link
-            href="/contact"
-            className="focus-ring inline-flex rounded-full bg-blue-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-400"
-          >
-            Contact
-          </Link>
-        </div>
+              </a>
+            ))}
+          </nav>
 
-        <a
-          href={personalInfo.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="focus-ring inline-flex rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-200 md:hidden"
-        >
-          LinkedIn
-        </a>
-      </nav>
-    </motion.header>
+          <div className="hidden items-center lg:flex">
+            <a
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-md border border-[var(--border)] bg-[var(--accent)] px-4 py-2 text-[11.5px] font-semibold uppercase tracking-[0.12em] text-white shadow-[2px_2px_0_0_rgba(10,10,10,1)] transition-transform duration-150 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0_0_rgba(10,10,10,1)]"
+            >
+              Let&apos;s Talk
+            </a>
+          </div>
+
+          <a
+            href={LINKEDIN_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex shrink-0 items-center gap-1.5 rounded-md border border-[var(--border)] bg-[var(--accent)] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white shadow-[2px_2px_0_0_rgba(10,10,10,1)] transition-transform duration-150 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0_0_rgba(10,10,10,1)] lg:hidden"
+          >
+            Connect
+          </a>
+        </div>
+      </div>
+    </header>
   );
 }
