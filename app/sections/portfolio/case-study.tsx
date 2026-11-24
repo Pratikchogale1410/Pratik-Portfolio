@@ -57,7 +57,7 @@ export function CaseStudySection() {
           </div>
           <div className="bg-white p-6">
             <p className="eyebrow-muted">Stack</p>
-            <p className="mt-2 flex flex-wrap gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--foreground-muted)]">
+            <p className="mt-2 flex flex-wrap gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--foreground-subtle)]">
               Next.js · JavaScript · Convex · Supabase · OpenRouter · Meta / WhatsApp
             </p>
           </div>
@@ -108,7 +108,7 @@ export function CaseStudySection() {
         </div>
 
         <div className="mt-14 grid gap-5 md:grid-cols-2">
-          <div className="reveal border border-[var(--border)] bg-white p-7 shadow-[4px_4px_0_0_rgba(10,10,10,1)] md:p-8">
+          <div className="reveal border border-[var(--border)] bg-white p-7 shadow-[4px_4px_0_0_rgba(0,0,0,1)] md:p-8">
             <p className="eyebrow">01 — The System</p>
             <h3 className="heading-display mt-3 text-[22px]">
               Healthcare CRM for the full lead-to-patient workflow.
@@ -120,7 +120,7 @@ export function CaseStudySection() {
             </p>
           </div>
 
-          <div className="reveal border border-[var(--border)] bg-white p-7 shadow-[4px_4px_0_0_rgba(10,10,10,1)] md:p-8">
+          <div className="reveal border border-[var(--border)] bg-white p-7 shadow-[4px_4px_0_0_rgba(0,0,0,1)] md:p-8">
             <p className="eyebrow">02 — Lead Flow</p>
             <h3 className="heading-display mt-3 text-[22px]">
               Clinic Mail → Agent Mail → CRM Lead Page
@@ -132,7 +132,7 @@ export function CaseStudySection() {
             </p>
           </div>
 
-          <div className="reveal border border-[var(--border)] bg-white p-7 shadow-[4px_4px_0_0_rgba(10,10,10,1)] md:p-8">
+          <div className="reveal border border-[var(--border)] bg-white p-7 shadow-[4px_4px_0_0_rgba(0,0,0,1)] md:p-8">
             <p className="eyebrow">03 — CRM Workflows</p>
             <h3 className="heading-display mt-3 text-[22px]">
               End-to-end patient operations.
@@ -141,7 +141,7 @@ export function CaseStudySection() {
               {crmWorkflows.map((w) => (
                 <li
                   key={w}
-                  className="flex items-center gap-2 border border-[var(--border-soft)] bg-[var(--background)] px-3 py-2 text-sm"
+                  className="flex items-center gap-2 border border-[var(--border)] bg-white px-3 py-2 text-sm"
                 >
                   <CheckCircle2 size={14} className="text-[var(--accent)]" />
                   {w}
@@ -150,7 +150,7 @@ export function CaseStudySection() {
             </ul>
           </div>
 
-          <div className="reveal border border-[var(--border)] bg-white p-7 shadow-[4px_4px_0_0_rgba(10,10,10,1)] md:p-8">
+          <div className="reveal border border-[var(--border)] bg-white p-7 shadow-[4px_4px_0_0_rgba(0,0,0,1)] md:p-8">
             <p className="eyebrow">04 — Automation</p>
             <h3 className="heading-display mt-3 text-[22px]">
               WhatsApp & LLM-powered automation.
@@ -159,7 +159,7 @@ export function CaseStudySection() {
               {automation.map((a) => (
                 <li
                   key={a}
-                  className="flex items-center gap-2 text-sm text-[var(--foreground-muted)]"
+                  className="flex items-center gap-2 text-sm text-[var(--foreground-subtle)]"
                 >
                   <span className="h-1.5 w-1.5 bg-[var(--accent)]" />
                   {a}
@@ -168,7 +168,7 @@ export function CaseStudySection() {
             </ul>
           </div>
 
-          <div className="reveal border border-[var(--border)] bg-[var(--background)] p-7 shadow-[4px_4px_0_0_rgba(10,10,10,1)] md:p-8 md:col-span-2">
+          <div className="reveal border border-[var(--border)] bg-white p-7 shadow-[4px_4px_0_0_rgba(0,0,0,1)] md:p-8 md:col-span-2">
             <div className="grid items-center gap-8 md:grid-cols-[1fr_1fr]">
               <div>
                 <p className="eyebrow">05 — Database</p>
@@ -241,3 +241,4 @@ export function CaseStudySection() {
     </section>
   );
 }
+

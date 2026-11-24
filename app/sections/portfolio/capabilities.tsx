@@ -70,7 +70,7 @@ export function CapabilitiesSection() {
           {capabilities.map((cap, idx) => (
             <article
               key={cap.title}
-              className="reveal group flex flex-col gap-6 border border-[var(--border)] bg-white p-7 shadow-[4px_4px_0_0_rgba(10,10,10,1)] md:p-8"
+              className="reveal group flex flex-col gap-6 border border-[var(--border)] bg-white p-7 shadow-[4px_4px_0_0_rgba(0,0,0,1)] md:p-8"
               style={{ transitionDelay: `${idx * 50}ms` }}
             >
               <div className="flex items-center justify-between">
@@ -89,7 +89,7 @@ export function CapabilitiesSection() {
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-1.5 border-t border-[var(--border-soft)] pt-5">
+              <div className="flex flex-wrap gap-1.5 border-t border-[var(--border)] pt-5">
                 {cap.tags.map((tag) => (
                   <span key={tag} className="tag-soft">
                     {tag}
@@ -103,3 +103,4 @@ export function CapabilitiesSection() {
     </section>
   );
 }
+

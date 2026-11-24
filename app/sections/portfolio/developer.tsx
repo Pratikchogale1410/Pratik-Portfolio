@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { personalInfo } from "@/data/portfolio-data";
+import { personalInfo, education } from "@/data/portfolio-data";
 
 const focusTags = [
   "FULL STACK DEVELOPMENT",
@@ -25,7 +25,7 @@ export function DeveloperSection() {
           </h2>
         </div>
 
-        <div className="reveal mt-12 overflow-hidden rounded-xl border border-[var(--border)] bg-white shadow-[6px_6px_0_0_rgba(10,10,10,1)]">
+        <div className="reveal mt-12 overflow-hidden rounded-xl border border-[var(--border)] bg-white shadow-[6px_6px_0_0_rgba(0,0,0,1)]">
           <div className="grid items-stretch md:grid-cols-[0.85fr_1.15fr]">
             <div className="relative border-b border-[var(--border)] bg-[var(--background)] md:border-b-0 md:border-r">
               <div className="relative aspect-[4/5] w-full md:aspect-auto md:h-full">
@@ -38,8 +38,8 @@ export function DeveloperSection() {
                   priority
                 />
               </div>
-              <div className="flex items-center justify-between border-t border-[var(--border)] bg-white px-4 py-2.5 md:absolute md:bottom-0 md:left-0 md:right-0 md:border-t md:bg-white/95 md:backdrop-blur-sm">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--foreground-subtle)]">
+              <div className="flex items-center justify-between border-t border-[var(--border)] bg-black px-4 py-2.5 md:absolute md:bottom-0 md:left-0 md:right-0 md:border-t md:bg-black/95 md:backdrop-blur-sm">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
                   Profile
                 </p>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
@@ -53,7 +53,7 @@ export function DeveloperSection() {
               <h3 className="heading-display mt-3 text-[28px] leading-[1.1] md:text-[36px]">
                 Pratik Chogale
               </h3>
-              <p className="mt-2 text-[15px] font-semibold uppercase tracking-[0.06em] text-[var(--foreground-muted)]">
+              <p className="mt-2 text-[15px] font-semibold uppercase tracking-[0.06em] text-[var(--foreground)]">
                 Full Stack Developer
               </p>
               <p className="mt-2 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--foreground-subtle)]">
@@ -61,21 +61,42 @@ export function DeveloperSection() {
                 BSc IT Graduate
               </p>
 
-              <p className="mt-6 text-[15px] leading-7 text-[var(--foreground-muted)] md:text-base">
+              <p className="mt-6 text-[15px] leading-7 text-[var(--foreground-subtle)] md:text-base">
                 BSc IT Graduate and Full Stack Developer focused on building
                 production-ready web applications, AI-powered features, CRM
                 systems and automation workflows.
               </p>
 
-              <div className="mt-8 border-t border-[var(--border-soft)] pt-6">
+              <div className="mt-8 border-t border-[var(--border)] pt-6">
+                <p className="eyebrow">Education</p>
+                {education.map((edu) => (
+                  <div key={edu.degree} className="mt-4">
+                    <p className="text-sm font-bold text-[var(--foreground)]">
+                      {edu.degree}
+                    </p>
+                    <p className="mt-1 text-[13px] text-[var(--foreground-subtle)]">
+                      {edu.institution}
+                    </p>
+                    <p className="mt-1 text-xs text-[var(--foreground-subtle)] uppercase tracking-[0.12em]">
+                      {edu.period} · {edu.location}
+                    </p>
+                    <ul className="mt-2 space-y-1 text-sm text-[var(--foreground-subtle)]">
+                      {edu.details.map((detail) => (
+                        <li key={detail} className="flex items-start gap-2">
+                          <span className="mt-1 h-1 w-1 shrink-0 bg-[var(--accent)]" />
+                          {detail}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 border-t border-[var(--border)] pt-6">
                 <p className="eyebrow">Focus areas</p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {focusTags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="inline-flex items-center gap-1.5 border border-[var(--border)] bg-white px-3 py-1.5 text-[10.5px] font-semibold uppercase tracking-[0.1em]"
-                    >
-                      <span className="h-1 w-1 bg-[var(--accent)]" />
+                    <span key={tag} className="tag">
                       {tag}
                     </span>
                   ))}
@@ -103,3 +124,4 @@ export function DeveloperSection() {
     </section>
   );
 }
+

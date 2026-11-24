@@ -62,6 +62,51 @@ export const professionalHighlights = [
   },
 ];
 
+export const achievements = [
+  {
+    title: "Database I/O Reduction",
+    category: "Database Optimization",
+    metric: "12–15 GB/day → 1–1.5 GB/day",
+    description:
+      "Optimized application data operations and query patterns, reducing daily database I/O from 12–15 GB to 1–1.5 GB and significantly lowering operational costs.",
+  },
+  {
+    title: "WhatsApp Automation",
+    category: "Automation",
+    metric: "100% Automated",
+    description:
+      "Integrated WhatsApp Business with Meta Business Manager and OpenRouter to automate customer communication workflows end-to-end.",
+  },
+  {
+    title: "AI Integration",
+    category: "AI",
+    metric: "2+ Modules",
+    description:
+      "Shipped AI-powered interview preparation and AI-assisted application features using LLM integration and dynamic Q&A generation.",
+  },
+  {
+    title: "Full Product Development",
+    category: "Full-Stack Development",
+    metric: "End-to-End",
+    description:
+      "Delivered production-ready applications across UI/UX, frontend, backend, database, API integration, testing, debugging, and production deployment.",
+  },
+];
+
+export const education = [
+  {
+    degree: "BSc IT",
+    institution: "BSc IT Graduate",
+    period: "2026",
+    location: "Khopoli, Maharashtra, India",
+    details: [
+      "Focused on building production-ready web applications and AI-powered features",
+      "Experience with Next.js, Firebase, Supabase, and Convex",
+      "Database optimization and API integration",
+    ],
+  },
+];
+
 export const experiences = [
   {
     role: "Full Stack Developer",
@@ -283,6 +328,145 @@ export const projects = [
     contributions: [
       "End-to-end responsive web application for EV charging station discovery",
       "User-friendly interface focused on accessibility to EV infrastructure",
+    ],
+    demo: "",
+    github: "",
+  },
+  {
+    id: "ai-calling-agent",
+    featured: false,
+    category: "AI Voice Platform",
+    name: "AI Calling Agent",
+    period: "2026",
+    image: "/projects/ai-calling-agent.png",
+    description:
+      "Built an AI-powered calling platform integrating Twilio, LiveKit and ElevenLabs. It enables automated inbound/outbound calls and simultaneous calls to multiple users on a specific topic. AI agents independently interact with customers, while call recordings and conversation transcripts can be reviewed later.",
+    problem:
+      "Businesses needed an automated voice calling solution to handle inbound and outbound calls at scale without manual intervention for every customer interaction.",
+    solution:
+      "Developed an AI-powered calling platform with Twilio, LiveKit, and ElevenLabs integration that autonomously handles customer conversations and records calls with transcripts for later review.",
+    stack: [
+      "Next.js",
+      "React.js",
+      "Node.js",
+      "Supabase",
+      "OpenRouter",
+      "Twilio",
+      "LiveKit",
+      "ElevenLabs",
+      "WebRTC",
+      "AI Agents",
+    ],
+    features: [
+      "Parallel AI calling",
+      "Autonomous voice conversations",
+      "Real-time interaction",
+      "Call recordings and transcripts",
+    ],
+    contributions: [
+      "Parallel AI calling",
+      "Autonomous voice conversations",
+      "Real-time interaction",
+      "Call recordings and transcripts",
+    ],
+    demo: "",
+    github: "",
+  },
+  {
+    id: "snowflake-ai-decision-maker",
+    featured: false,
+    category: "AI Decision Intelligence",
+    name: "Snowflake AI Decision Maker",
+    period: "2026",
+    image: "/projects/snowflake-ai-decision-maker.png",
+    description:
+      "Developed a Streamlit-based AI application using Snowflake Cortex to analyze enterprise business data and identify potential decision-makers from Salesforce and Fintrix datasets.",
+    problem:
+      "Enterprises needed an efficient way to analyze large business datasets to identify key decision-makers for sales and outreach initiatives.",
+    solution:
+      "Built a Streamlit application using Snowflake Cortex AI that processes Salesforce and Fintrix data to identify and rank potential decision-makers through signal-based evaluation with an interactive dashboard.",
+    stack: [
+      "Snowflake",
+      "Snowflake Cortex AI",
+      "Python",
+      "Streamlit",
+      "SQL",
+      "XGBoost",
+      "Decision Trees",
+    ],
+    features: [
+      "Decision-maker identification",
+      "Business data analysis",
+      "Signal-based evaluation",
+      "Interactive dashboard",
+    ],
+    contributions: [
+      "Decision-maker identification",
+      "Business data analysis",
+      "Signal-based evaluation",
+      "Interactive dashboard",
+    ],
+    demo: "",
+    github: "",
+  },
+  {
+    id: "tinkerpulse",
+    featured: false,
+    category: "Productivity Platform",
+    name: "TinkerPulse",
+    period: "2026",
+    image: "/projects/tinkerpulse.png",
+    description:
+      "Developed a company productivity and workflow management platform with dedicated modules for employee goals, client work tracking, project file management, prompt creation, employee training and content scheduling. Includes timer-based client work tracking, organized project folders and Discord alerts for delayed or missed social media posts.",
+    problem:
+      "Companies needed an all-in-one productivity platform to manage employee goals, client work, project files, prompts, training, and content scheduling in a unified system.",
+    solution:
+      "Built TinkerPulse, a comprehensive workflow management platform with timer-based client work tracking, organized project folders, AI Prompt Designer, LMS training modules, content scheduling, and Discord notifications for delayed social media posts.",
+    stack: ["Next.js", "React.js", "JavaScript"],
+    features: [
+      "Client time tracking",
+      "Project management",
+      "AI Prompt Designer",
+      "LMS & Training",
+      "Content scheduling",
+      "Discord notifications",
+    ],
+    contributions: [
+      "Client time tracking",
+      "Project management",
+      "AI Prompt Designer",
+      "LMS & Training",
+      "Content scheduling",
+      "Discord notifications",
+    ],
+    demo: "",
+    github: "",
+  },
+  {
+    id: "company-knowledge-base",
+    featured: false,
+    category: "AI Knowledge Management",
+    name: "Company Knowledge Base",
+    period: "2026",
+    image: "/projects/company-knowledge-base.png",
+    description:
+      "Developed an AI-powered knowledge management platform where companies upload documents and PDFs as knowledge sources. Users can ask questions about company information, and the system retrieves relevant information from uploaded documents to provide specific answers.",
+    problem:
+      "Organizations struggled to find specific information across scattered documents and PDFs, wasting time searching for company knowledge.",
+    solution:
+      "Created an AI-powered knowledge base where companies upload documents and PDFs as knowledge sources, enabling users to ask natural-language questions and retrieve accurate answers from the uploaded content.",
+    stack: ["Next.js", "React.js", "AI", "Document Processing"],
+    features: [
+      "Document upload",
+      "PDF-based knowledge retrieval",
+      "Natural-language question answering",
+      "Centralized company knowledge access",
+    ],
+    contributions: [
+      "Document upload",
+      "PDF-based knowledge retrieval",
+      "Natural-language question answering",
+      "Centralized company knowledge access",
     ],
     demo: "",
     github: "",

@@ -42,13 +42,13 @@ export function ExperienceSection() {
           </p>
         </div>
 
-        <div className="reveal mt-14 grid gap-5 border border-[var(--border)] bg-white p-1 shadow-[5px_5px_0_0_rgba(10,10,10,1)] md:grid-cols-[1.2fr_2fr]">
+        <div className="reveal mt-14 grid gap-5 border border-[var(--border)] bg-white p-1 shadow-[5px_5px_0_0_rgba(0,0,0,1)] md:grid-cols-[1.2fr_2fr]">
           <div className="bg-white p-7 md:p-10">
             <p className="eyebrow">{exp.period}</p>
             <h3 className="heading-display mt-4 text-[24px] md:text-[28px]">
               {exp.role}
             </h3>
-            <p className="mt-2 text-sm font-semibold text-[var(--foreground-muted)]">
+            <p className="mt-2 text-sm font-semibold text-[var(--foreground-subtle)]">
               {exp.company}
             </p>
 
@@ -71,7 +71,7 @@ export function ExperienceSection() {
 
           <div className="bg-white p-7 md:p-10">
             <p className="eyebrow">Responsibilities</p>
-            <ul className="mt-5 space-y-3 text-[15px] leading-7 text-[var(--foreground-muted)]">
+            <ul className="mt-5 space-y-3 text-[15px] leading-7 text-[var(--foreground-subtle)]">
               {exp.points.map((point) => (
                 <li key={point} className="flex items-start gap-3">
                   <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-[var(--accent)]" />
@@ -94,3 +94,4 @@ export function ExperienceSection() {
     </section>
   );
 }
+

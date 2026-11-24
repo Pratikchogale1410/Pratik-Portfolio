@@ -24,21 +24,23 @@ const modules = [
 export function HeroSection() {
   return (
     <section
-      id="top"
+      id="hero"
       className="relative border-b border-[var(--border)] grid-bg"
     >
       <div className="section-shell grid gap-10 pb-14 pt-12 md:grid-cols-[1.15fr_0.85fr] md:gap-12 md:pb-24 md:pt-24">
         <div className="min-w-0">
-          <p className="eyebrow">Full Stack Developer</p>
+          <span className="inline-flex items-center gap-2 bg-[var(--accent)] border border-[var(--border)] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--foreground)] shadow-[2px_2px_0_0_rgba(0,0,0,1)]">
+            Full Stack Developer
+          </span>
 
           <h1 className="heading-display mt-5 text-[34px] leading-[1.05] md:mt-6 md:text-[64px]">
             Building software that
             <br />
-            solves <span className="italic text-[var(--accent)]">real</span>{" "}
+            solves <span className="bg-[var(--accent)] border border-[var(--border)] px-1 font-bold italic text-[var(--foreground)] shadow-[1.5px_1.5px_0_0_rgba(0,0,0,1)]">real</span>{" "}
             problems.
           </h1>
 
-          <p className="mt-5 max-w-xl text-[15px] leading-7 text-[var(--foreground-muted)] md:mt-6 md:text-[17px]">
+          <p className="mt-5 max-w-xl text-[15px] leading-7 text-[var(--foreground-subtle)] md:mt-6 md:text-[17px]">
             I build production-ready AI-powered applications, CRM systems and
             scalable web products — engineered to actually work in production.
           </p>
@@ -55,7 +57,7 @@ export function HeroSection() {
 
           <div className="mt-8 flex flex-wrap gap-2 md:mt-10">
             {tags.map((tag) => (
-              <span key={tag} className="tag">
+              <span key={tag} className="tag-accent">
                 {tag}
               </span>
             ))}
@@ -87,14 +89,14 @@ export function HeroSection() {
 function ArchitectureVisual() {
   return (
     <div className="relative w-full">
-        <div className="relative rounded-lg border-[1.5px] border-[var(--border)] bg-white shadow-[4px_4px_0_0_rgba(10,10,10,1)]">
-          <div className="flex items-center justify-between gap-3 rounded-t-[8px] border-b border-[var(--border)] bg-[var(--background)] px-2.5 py-1.5 md:px-3 md:py-2">
+        <div className="relative rounded-lg border-[1.5px] border-[var(--border)] bg-white shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
+          <div className="flex items-center justify-between gap-3 rounded-t-[8px] border-b border-[var(--border)] bg-black px-2.5 py-1.5 md:px-3 md:py-2">
             <div className="flex shrink-0 items-center gap-1">
               <span className="h-1.5 w-1.5 rounded-full border border-[var(--border)] bg-white md:h-2 md:w-2" />
               <span className="h-1.5 w-1.5 rounded-full border border-[var(--border)] bg-white md:h-2 md:w-2" />
               <span className="h-1.5 w-1.5 rounded-full border border-[var(--border)] bg-white md:h-2 md:w-2" />
             </div>
-            <div className="min-w-0 flex-1 truncate text-center text-[8px] font-semibold uppercase tracking-[0.14em] text-[var(--foreground-muted)] md:text-[9px] md:tracking-[0.16em]">
+            <div className="min-w-0 flex-1 truncate text-center text-[8px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)] md:text-[9px] md:tracking-[0.16em]">
               pratik.dev / system
             </div>
             <p className="shrink-0 text-[8px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)] md:text-[9px] md:tracking-[0.16em]">
@@ -152,7 +154,7 @@ function ModuleRow({
     <div className="flex items-center gap-2 rounded-md border border-[var(--border)] bg-white p-2 md:gap-3 md:p-2.5">
       <div
         className={`flex h-8 w-8 shrink-0 items-center justify-center rounded border border-[var(--border)] md:h-9 md:w-9 ${
-          module.accent ? "bg-[var(--accent)] text-white" : "bg-[var(--background)] text-[var(--foreground)]"
+          module.accent ? "bg-[var(--accent)] text-[var(--foreground)]" : "bg-[var(--background)] text-[var(--foreground)]"
         }`}
       >
         <span className="font-display text-[10px] font-bold leading-none md:text-[11px]">
@@ -175,3 +177,4 @@ function ModuleRow({
     </div>
   );
 }
+

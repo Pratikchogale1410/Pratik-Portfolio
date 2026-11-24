@@ -24,7 +24,7 @@ export default function ProjectsPage() {
             {projects.map((project, idx) => (
               <article
                 key={project.id}
-                className="flex flex-col gap-6 border border-[var(--border)] bg-white p-7 shadow-[4px_4px_0_0_rgba(10,10,10,1)] md:p-8"
+                className="flex flex-col gap-6 border border-[var(--border)] bg-white p-7 shadow-[4px_4px_0_0_rgba(0,0,0,1)] md:p-8"
                 style={{ transitionDelay: `${idx * 60}ms` }}
               >
                 <div className="flex items-center justify-between">
@@ -63,25 +63,25 @@ export default function ProjectsPage() {
                   </ul>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-2 border-t border-[var(--border-soft)] pt-5">
-                  {project.demo ? (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-md border border-[var(--border)] bg-white px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--foreground)] transition-colors hover:bg-[var(--foreground)] hover:text-white"
-                    >
-                      View Live
-                      <ArrowUpRight size={12} />
-                    </a>
-                  ) : null}
-                  {project.id === "dermaplastcrm" ? (
-                    <Link
-                      href="/#case-study"
-                      className="inline-flex items-center gap-1.5 rounded-md border border-[var(--border)] bg-[var(--accent)] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-white shadow-[1.5px_1.5px_0_0_rgba(10,10,10,1)]"
-                    >
-                      Case Study
-                      <ArrowRight size={12} />
+                  <div className="flex flex-wrap items-center gap-2 border-t border-[var(--border)] pt-5">
+                    {project.demo ? (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 border border-[var(--border)] bg-[var(--accent)] px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.1em] text-[var(--foreground)] shadow-[2px_2px_0_0_rgba(0,0,0,1)] transition-transform duration-150 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0_0_rgba(0,0,0,1)]"
+                      >
+                        View Live
+                        <ArrowUpRight size={12} />
+                      </a>
+                    ) : null}
+                    {project.id === "dermaplastcrm" ? (
+                      <Link
+                        href="/#case-study"
+                        className="inline-flex items-center gap-1.5 border border-[var(--border)] bg-[var(--accent)] px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.1em] text-[var(--foreground)] shadow-[2px_2px_0_0_rgba(0,0,0,1)] transition-transform duration-150 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0_0_rgba(0,0,0,1)]"
+                      >
+                        Case Study
+                        <ArrowRight size={12} />
                     </Link>
                   ) : null}
                 </div>
@@ -100,3 +100,4 @@ export default function ProjectsPage() {
     </main>
   );
 }
+

@@ -3,7 +3,7 @@ import { skillGroups } from "@/data/portfolio-data";
 export function TechnologySection() {
   return (
     <section
-      id="technology"
+      id="skills"
       className="border-b border-[var(--border)] bg-[var(--background)]"
     >
       <div className="section-shell section-pad">
@@ -26,9 +26,9 @@ export function TechnologySection() {
           {skillGroups.map((group) => (
             <div
               key={group.category}
-              className="border border-[var(--border)] bg-white p-7 shadow-[4px_4px_0_0_rgba(10,10,10,1)] md:p-8"
+              className="border border-[var(--border)] bg-white p-7 shadow-[4px_4px_0_0_rgba(0,0,0,1)] md:p-8"
             >
-              <div className="flex items-center justify-between border-b border-[var(--border-soft)] pb-4">
+              <div className="flex items-center justify-between border-b border-[var(--border)] pb-4">
                 <p className="eyebrow">{group.category}</p>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--foreground-subtle)]">
                   {group.skills.length} items
@@ -38,12 +38,12 @@ export function TechnologySection() {
                 {group.skills.map((skill) => (
                   <li
                     key={skill.name}
-                    className="flex items-start justify-between gap-4 border-b border-[var(--border-subtle)] pb-3 last:border-b-0 last:pb-0"
+                    className="flex items-start justify-between border-b border-[var(--border)] pb-3 last:border-b-0 last:pb-0"
                   >
                     <span className="text-[15px] font-semibold text-[var(--foreground)]">
                       {skill.name}
                     </span>
-                    <span className="text-right text-[12px] leading-5 text-[var(--foreground-muted)]">
+                    <span className="text-right text-[12px] leading-5 text-[var(--foreground-subtle)]">
                       {skill.description}
                     </span>
                   </li>
@@ -56,3 +56,4 @@ export function TechnologySection() {
     </section>
   );
 }
+

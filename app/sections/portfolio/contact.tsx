@@ -56,7 +56,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="border-b border-[var(--border)] bg-[var(--dark)] text-[var(--dark-foreground)]"
+      className="border-b border-[var(--border)] bg-[var(--background)]"
     >
       <div className="section-shell section-pad">
         <div className="grid gap-12 md:grid-cols-[1fr_1fr] md:gap-16">
@@ -67,12 +67,12 @@ export function ContactSection() {
             >
               Contact
             </p>
-            <h2 className="heading-display mt-4 text-[36px] leading-[1.05] text-white md:text-[52px]">
+            <h2 className="heading-display mt-4 text-[36px] leading-[1.05] text-[var(--foreground)] md:text-[52px]">
               Let&apos;s build
               <br />
               something useful.
             </h2>
-            <p className="mt-6 max-w-md text-base leading-7 text-[var(--dark-muted)] md:text-[17px]">
+            <p className="mt-6 max-w-md text-base leading-7 text-[var(--foreground-subtle)] md:text-[17px]">
               Available for opportunities involving full-stack development,
               AI-powered applications, CRM systems, web applications and
               automation.
@@ -94,7 +94,7 @@ export function ContactSection() {
               <ContactRow
                 icon={<LinkedinIcon size={15} />}
                 label="LinkedIn"
-                value="linkedin.com/in/pratik-chogale"
+                value="linkedin.com/in/pratik-chogale-68236632a"
                 href={personalInfo.linkedin}
               />
               <ContactRow
@@ -107,8 +107,8 @@ export function ContactSection() {
           </div>
 
           <div>
-            <div className="rounded-xl border border-[var(--border)] bg-white p-6 text-[var(--foreground)] shadow-[6px_6px_0_0_rgba(255,255,255,0.18)] md:p-8">
-              <div className="flex items-center justify-between border-b border-[var(--border-soft)] pb-4">
+            <div className="border border-[var(--border)] bg-white p-6 text-[var(--foreground)] shadow-[6px_6px_0_0_rgba(0,0,0,1)] md:p-8">
+              <div className="flex items-center justify-between border-b border-[var(--border)] pb-4">
                 <p className="eyebrow">Send a message</p>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--foreground-subtle)]">
                   Reply &lt; 48h
@@ -155,7 +155,7 @@ export function ContactSection() {
                 <button
                   type="submit"
                   disabled={!valid || submitting}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-[var(--border)] bg-[var(--accent)] px-5 py-3 text-sm font-semibold uppercase tracking-[0.1em] text-white shadow-[3px_3px_0_0_rgba(10,10,10,1)] transition-transform duration-150 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_0_rgba(10,10,10,1)] disabled:cursor-not-allowed disabled:opacity-50"
+                  className="inline-flex w-full items-center justify-center gap-2 border border-[var(--border)] bg-[var(--accent)] px-5 py-3 text-sm font-bold uppercase tracking-[0.1em] text-[var(--foreground)] shadow-[3px_3px_0_0_rgba(0,0,0,1)] transition-transform duration-150 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0_0_rgba(0,0,0,1)] disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {submitting ? "Sending..." : "Send Message"}
                   <ArrowUpRight size={14} />
@@ -165,8 +165,8 @@ export function ContactSection() {
                   <p
                     className={`text-sm ${
                       status.type === "success"
-                        ? "text-emerald-600"
-                        : "text-rose-600"
+                        ? "text-[var(--accent)]"
+                        : "text-[var(--foreground)]"
                     }`}
                   >
                     {status.message}
@@ -194,7 +194,7 @@ export function ContactSection() {
         }
         .contact-input-light:focus {
           border-color: var(--accent);
-          box-shadow: 0 0 0 3px rgba(31, 78, 216, 0.12);
+          box-shadow: 0 0 0 3px rgba(255, 214, 10, 0.12);
         }
       `}</style>
     </section>
@@ -217,23 +217,23 @@ function ContactRow({
       <a
         href={href}
         target={href.startsWith("http") ? "_blank" : undefined}
-        rel={href.startsWith("http") ? "noreferrer" : undefined}
-        className="group flex items-center justify-between border border-[var(--dark-border)] bg-white/[0.03] px-4 py-3 transition-colors hover:border-white"
+        rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+        className="group flex items-center justify-between border border-[var(--border)] bg-white px-4 py-3 transition-colors hover:bg-[var(--accent)] hover:text-[var(--foreground)]"
       >
         <div className="flex items-center gap-3">
-          <span className="flex h-9 w-9 items-center justify-center border border-[var(--dark-border)] bg-white/[0.04] text-[var(--dark-muted)] transition-colors group-hover:border-white group-hover:text-white">
+          <span className="flex h-9 w-9 items-center justify-center border border-[var(--border)] bg-white text-[var(--foreground)] transition-colors group-hover:border-[var(--accent)] group-hover:bg-[var(--accent)] group-hover:text-[var(--foreground)]">
             {icon}
           </span>
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--dark-muted)]">
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--foreground-subtle)]">
               {label}
             </p>
-            <p className="mt-0.5 text-sm font-semibold text-white">{value}</p>
+            <p className="mt-0.5 text-sm font-bold text-[var(--foreground)]">{value}</p>
           </div>
         </div>
         <ArrowUpRight
           size={16}
-          className="text-[var(--dark-muted)] transition-colors group-hover:text-white"
+          className="text-[var(--foreground-subtle)] transition-colors group-hover:text-[var(--foreground)]"
         />
       </a>
     </li>
@@ -256,3 +256,4 @@ function Field({
     </label>
   );
 }
+
