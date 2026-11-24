@@ -83,28 +83,6 @@ export function HeroSection() {
 
   return (
     <section
-<<<<<<< HEAD
-      id="hero"
-      className="relative border-b border-[var(--border)] grid-bg"
-    >
-      <div className="section-shell grid gap-10 pb-14 pt-12 md:grid-cols-[1.15fr_0.85fr] md:gap-12 md:pb-24 md:pt-24">
-        <div className="min-w-0">
-          <span className="inline-flex items-center gap-2 bg-[var(--accent)] border border-[var(--border)] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--foreground)] shadow-[2px_2px_0_0_rgba(0,0,0,1)]">
-            Full Stack Developer
-          </span>
-
-          <h1 className="heading-display mt-5 text-[34px] leading-[1.05] md:mt-6 md:text-[64px]">
-            Building software that
-            <br />
-            solves <span className="bg-[var(--accent)] border border-[var(--border)] px-1 font-bold italic text-[var(--foreground)] shadow-[1.5px_1.5px_0_0_rgba(0,0,0,1)]">real</span>{" "}
-            problems.
-          </h1>
-
-          <p className="mt-5 max-w-xl text-[15px] leading-7 text-[var(--foreground-subtle)] md:mt-6 md:text-[17px]">
-            I build production-ready AI-powered applications, CRM systems and
-            scalable web products — engineered to actually work in production.
-          </p>
-=======
       id="top"
       ref={rootRef}
       className="glow-bg relative overflow-hidden border-b border-[var(--border)] pt-28 md:pt-40"
@@ -126,7 +104,6 @@ export function HeroSection() {
             <Word text="problems." />
           </span>
         </h1>
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
 
         <p
           data-intro="copy"
@@ -141,27 +118,11 @@ export function HeroSection() {
             <FlipText text="View My Work" />
             <span className="btn-icon-chip">
               <ArrowRight size={16} />
-<<<<<<< HEAD
-            </Link>
-            <Link href="/#contact" className="btn-secondary">
-              Let&apos;s Connect
-            </Link>
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-2 md:mt-10">
-            {tags.map((tag) => (
-              <span key={tag} className="tag-accent">
-                {tag}
-              </span>
-            ))}
-          </div>
-=======
             </span>
           </Link>
           <Link href="/#contact" className="btn-secondary">
             <FlipText text="Let's Connect" />
           </Link>
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
         </div>
 
         <div data-intro="tags" className="mt-8 flex flex-wrap justify-center gap-2 md:mt-10">
@@ -207,21 +168,6 @@ function Word({ text, className = "" }: { text: string; className?: string }) {
 
 function ArchitectureVisual() {
   return (
-<<<<<<< HEAD
-    <div className="relative w-full">
-        <div className="relative rounded-lg border-[1.5px] border-[var(--border)] bg-white shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
-          <div className="flex items-center justify-between gap-3 rounded-t-[8px] border-b border-[var(--border)] bg-black px-2.5 py-1.5 md:px-3 md:py-2">
-            <div className="flex shrink-0 items-center gap-1">
-              <span className="h-1.5 w-1.5 rounded-full border border-[var(--border)] bg-white md:h-2 md:w-2" />
-              <span className="h-1.5 w-1.5 rounded-full border border-[var(--border)] bg-white md:h-2 md:w-2" />
-              <span className="h-1.5 w-1.5 rounded-full border border-[var(--border)] bg-white md:h-2 md:w-2" />
-            </div>
-            <div className="min-w-0 flex-1 truncate text-center text-[8px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)] md:text-[9px] md:tracking-[0.16em]">
-              pratik.dev / system
-            </div>
-            <p className="shrink-0 text-[8px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)] md:text-[9px] md:tracking-[0.16em]">
-              Live
-=======
     <div className="glass-card mx-auto w-full max-w-[1000px] overflow-hidden rounded-[28px] p-3 text-left shadow-[0_40px_120px_-30px_rgba(0,86,251,0.45)] md:p-5">
       <div className="flex items-center justify-between gap-3 rounded-[18px] border-b border-[var(--border-soft)] bg-[rgba(1,13,35,0.6)] px-4 py-3">
         <div className="flex shrink-0 items-center gap-1.5">
@@ -245,7 +191,6 @@ function ArchitectureVisual() {
             </p>
             <p className="mt-1 truncate font-display text-[17px] font-semibold tracking-tight md:text-[20px]">
               Production Stack
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
             </p>
           </div>
           <div className="flex shrink-0 items-center gap-2">
@@ -295,15 +240,10 @@ function ModuleRow({
       className="glass-card flex items-center gap-3 rounded-[18px] p-3 text-left transition-transform duration-500 ease-out hover:-translate-y-1"
     >
       <div
-<<<<<<< HEAD
-        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded border border-[var(--border)] md:h-9 md:w-9 ${
-          module.accent ? "bg-[var(--accent)] text-[var(--foreground)]" : "bg-[var(--background)] text-[var(--foreground)]"
-=======
         className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
           module.accent
             ? "bg-[var(--accent)] text-white shadow-[0_0_20px_rgba(0,86,251,0.6)]"
             : "bg-[rgba(255,255,255,0.06)] text-[var(--foreground)]"
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
         }`}
       >
         <span className="font-display text-[11px] font-bold leading-none">{module.code}</span>

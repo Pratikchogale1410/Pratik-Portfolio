@@ -53,18 +53,6 @@ export function ProcessSection() {
           {steps.map((step, idx) => (
             <div
               key={step.number}
-<<<<<<< HEAD
-              className="reveal flex flex-col gap-4 border border-[var(--border)] bg-white p-7 shadow-[4px_4px_0_0_rgba(0,0,0,1)]"
-              style={{ transitionDelay: `${idx * 60}ms` }}
-            >
-              <p className="font-display text-[44px] font-semibold leading-none tracking-tight text-[var(--accent)]">
-                {step.number}
-              </p>
-              <h3 className="heading-display text-[18px]">{step.title}</h3>
-              <p className="text-sm leading-6 text-[var(--foreground-subtle)]">
-                {step.description}
-              </p>
-=======
               className="reveal"
               style={{ transitionDelay: `${idx * 70}ms` }}
             >
@@ -77,7 +65,6 @@ export function ProcessSection() {
                   {step.description}
                 </p>
               </div>
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
             </div>
           ))}
         </div>

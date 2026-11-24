@@ -57,37 +57,19 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-<<<<<<< HEAD
-      className="border-b border-[var(--border)] bg-[var(--background)]"
-=======
       className="relative overflow-hidden border-b border-[var(--border)] bg-[var(--dark)] text-[var(--dark-foreground)]"
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
     >
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[70%] bg-[radial-gradient(60%_60%_at_50%_100%,rgba(0,86,251,0.35),transparent_70%)]" />
       <div className="section-shell section-pad relative">
         <div className="grid gap-12 md:grid-cols-[1fr_1fr] md:gap-16">
           <div>
-<<<<<<< HEAD
-            <p
-              className="text-[11px] font-semibold uppercase tracking-[0.18em]"
-              style={{ color: "var(--accent)" }}
-            >
-              Contact
-            </p>
-            <h2 className="heading-display mt-4 text-[36px] leading-[1.05] text-[var(--foreground)] md:text-[52px]">
-=======
             <p className="eyebrow">Contact</p>
             <h2 className="heading-display mt-5 text-[clamp(2.2rem,4.6vw,4rem)] leading-[1.04] text-white">
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
               Let&apos;s build
               <br />
               something useful.
             </h2>
-<<<<<<< HEAD
-            <p className="mt-6 max-w-md text-base leading-7 text-[var(--foreground-subtle)] md:text-[17px]">
-=======
             <p className="mt-6 max-w-md text-[15px] leading-7 text-[var(--dark-muted)] md:text-[18px]">
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
               Available for opportunities involving full-stack development,
               AI-powered applications, CRM systems, web applications and
               automation.
@@ -122,13 +104,8 @@ export function ContactSection() {
           </div>
 
           <div>
-<<<<<<< HEAD
-            <div className="border border-[var(--border)] bg-white p-6 text-[var(--foreground)] shadow-[6px_6px_0_0_rgba(0,0,0,1)] md:p-8">
-              <div className="flex items-center justify-between border-b border-[var(--border)] pb-4">
-=======
             <div className="glass-card p-6 text-[var(--foreground)] md:p-8">
               <div className="flex items-center justify-between border-b border-[var(--border-soft)] pb-4">
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
                 <p className="eyebrow">Send a message</p>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--foreground-subtle)]">
                   Reply &lt; 48h
@@ -175,11 +152,7 @@ export function ContactSection() {
                 <button
                   type="submit"
                   disabled={!valid || submitting}
-<<<<<<< HEAD
-                  className="inline-flex w-full items-center justify-center gap-2 border border-[var(--border)] bg-[var(--accent)] px-5 py-3 text-sm font-bold uppercase tracking-[0.1em] text-[var(--foreground)] shadow-[3px_3px_0_0_rgba(0,0,0,1)] transition-transform duration-150 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0_0_rgba(0,0,0,1)] disabled:cursor-not-allowed disabled:opacity-50"
-=======
                   className="btn-primary w-full justify-between disabled:cursor-not-allowed disabled:opacity-50"
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
                 >
                   <FlipText text={submitting ? "Sending..." : "Send Message"} />
                   <span className="btn-icon-chip">
@@ -191,13 +164,8 @@ export function ContactSection() {
                   <p
                     className={`text-sm ${
                       status.type === "success"
-<<<<<<< HEAD
-                        ? "text-[var(--accent)]"
-                        : "text-[var(--foreground)]"
-=======
                         ? "text-emerald-400"
                         : "text-rose-400"
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
                     }`}
                   >
                     {status.message}
@@ -225,13 +193,8 @@ export function ContactSection() {
           color: var(--foreground-subtle);
         }
         .contact-input-light:focus {
-<<<<<<< HEAD
-          border-color: var(--accent);
-          box-shadow: 0 0 0 3px rgba(255, 214, 10, 0.12);
-=======
           border-color: var(--accent-bright);
           box-shadow: 0 0 0 3px rgba(0, 86, 251, 0.25);
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
         }
       `}</style>
     </section>

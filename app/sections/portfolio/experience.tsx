@@ -39,23 +39,11 @@ export function ExperienceSection() {
           </p>
         </div>
 
-<<<<<<< HEAD
-        <div className="reveal mt-14 grid gap-5 border border-[var(--border)] bg-white p-1 shadow-[5px_5px_0_0_rgba(0,0,0,1)] md:grid-cols-[1.2fr_2fr]">
-          <div className="bg-white p-7 md:p-10">
-            <p className="eyebrow">{exp.period}</p>
-            <h3 className="heading-display mt-4 text-[24px] md:text-[28px]">
-              {exp.role}
-            </h3>
-            <p className="mt-2 text-sm font-semibold text-[var(--foreground-subtle)]">
-              {exp.company}
-            </p>
-=======
         <div className="reveal glass-card mt-16 grid overflow-hidden md:grid-cols-[1.2fr_2fr]">
           <div className="p-7 md:p-10">
             <p className="eyebrow">{exp.period}</p>
             <h3 className="heading-display mt-5 text-[24px] md:text-[30px]">{exp.role}</h3>
             <p className="mt-2 text-sm font-semibold text-[var(--foreground-muted)]">{exp.company}</p>
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
 
             <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-[var(--border-soft)] bg-[var(--border-soft)]">
               {[
@@ -76,11 +64,7 @@ export function ExperienceSection() {
 
           <div className="border-t border-[var(--border-soft)] p-7 md:border-l md:border-t-0 md:p-10">
             <p className="eyebrow">Responsibilities</p>
-<<<<<<< HEAD
-            <ul className="mt-5 space-y-3 text-[15px] leading-7 text-[var(--foreground-subtle)]">
-=======
             <ul className="mt-6 space-y-3 text-[15px] leading-7 text-[var(--foreground-muted)]">
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
               {exp.points.map((point) => (
                 <li key={point} className="flex items-start gap-3">
                   <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent-bright)]" />

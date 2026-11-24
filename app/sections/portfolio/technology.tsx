@@ -2,14 +2,7 @@ import { skillGroups } from "@/data/portfolio-data";
 
 export function TechnologySection() {
   return (
-<<<<<<< HEAD
-    <section
-      id="skills"
-      className="border-b border-[var(--border)] bg-[var(--background)]"
-    >
-=======
     <section id="technology" className="relative border-b border-[var(--border)] bg-[var(--background)]">
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
       <div className="section-shell section-pad">
         <div className="reveal grid items-end gap-8 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
           <div>
@@ -28,16 +21,8 @@ export function TechnologySection() {
 
         <div className="reveal mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {skillGroups.map((group) => (
-<<<<<<< HEAD
-            <div
-              key={group.category}
-              className="border border-[var(--border)] bg-white p-7 shadow-[4px_4px_0_0_rgba(0,0,0,1)] md:p-8"
-            >
-              <div className="flex items-center justify-between border-b border-[var(--border)] pb-4">
-=======
             <div key={group.category} className="glass-card p-7 md:p-8">
               <div className="flex items-center justify-between border-b border-[var(--border-soft)] pb-4">
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
                 <p className="eyebrow">{group.category}</p>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--foreground-subtle)]">
                   {group.skills.length} items

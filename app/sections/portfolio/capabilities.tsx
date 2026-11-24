@@ -73,23 +73,6 @@ export function CapabilitiesSection() {
           />
         </div>
 
-<<<<<<< HEAD
-        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {capabilities.map((cap, idx) => (
-            <article
-              key={cap.title}
-              className="reveal group flex flex-col gap-6 border border-[var(--border)] bg-white p-7 shadow-[4px_4px_0_0_rgba(0,0,0,1)] md:p-8"
-              style={{ transitionDelay: `${idx * 50}ms` }}
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-display text-xs font-semibold tracking-[0.2em] text-[var(--foreground-subtle)]">
-                  {cap.number}
-                </span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
-                  Engineering
-                </span>
-              </div>
-=======
         <div className="mt-16 grid gap-5 md:grid-cols-3 md:items-start">
           {columns.map((col, colIdx) => (
             <Parallax key={colIdx} speed={speeds[colIdx]} className="flex flex-col gap-5">
@@ -108,7 +91,6 @@ export function CapabilitiesSection() {
                       Engineering
                     </span>
                   </div>
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
 
                   <div className="flex-1">
                     <h3 className="heading-display text-[22px] leading-tight">{cap.title}</h3>
@@ -117,16 +99,6 @@ export function CapabilitiesSection() {
                     </p>
                   </div>
 
-<<<<<<< HEAD
-              <div className="flex flex-wrap gap-1.5 border-t border-[var(--border)] pt-5">
-                {cap.tags.map((tag) => (
-                  <span key={tag} className="tag-soft">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </article>
-=======
                   <div className="flex flex-wrap gap-1.5 border-t border-[var(--border-soft)] pt-5">
                     {cap.tags.map((tag) => (
                       <span key={tag} className="tag-soft">
@@ -138,7 +110,6 @@ export function CapabilitiesSection() {
                 </div>
               ))}
             </Parallax>
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
           ))}
         </div>
       </div>

@@ -1,19 +1,8 @@
+import { ArrowDown } from "lucide-react";
 import { achievements } from "@/data/portfolio-data";
 
 export function ImpactSection() {
   return (
-<<<<<<< HEAD
-    <section
-      id="achievements"
-      className="border-b border-[var(--border)] bg-[var(--background)]"
-    >
-      <div className="section-shell section-pad">
-        <div className="reveal grid items-end gap-8 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
-          <div>
-            <p className="eyebrow">Achievements</p>
-            <h2 className="heading-display mt-4 text-[32px] leading-[1.05] md:text-[48px]">
-              Key Achievements
-=======
     <section id="impact" className="relative border-b border-[var(--border)] bg-[var(--background)]">
       <div className="section-shell section-pad">
         <div className="reveal grid items-end gap-8 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
@@ -21,46 +10,10 @@ export function ImpactSection() {
             <p className="eyebrow">Engineering Impact</p>
             <h2 className="heading-display mt-5 text-[clamp(2rem,4.2vw,3.6rem)] leading-[1.04]">
               Optimizing the systems
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
               <br />
               and Impact
             </h2>
           </div>
-<<<<<<< HEAD
-          <p className="text-base leading-7 text-[var(--foreground-subtle)] md:text-[17px]">
-            Measurable results delivered across database optimization, AI
-            integration, and full-stack product development.
-          </p>
-        </div>
-
-        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {achievements.map((achievement, idx) => (
-            <article
-              key={achievement.title}
-              className="reveal card p-7 shadow-[4px_4px_0_0_rgba(0,0,0,1)]"
-              style={{ transitionDelay: `${idx * 60}ms` }}
-            >
-              <div className="flex items-center justify-between mb-6">
-                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--foreground-subtle)]">
-                  {achievement.category}
-                </span>
-                <span className="h-8 w-8 bg-[var(--accent)] border border-[var(--border)] flex items-center justify-center font-display text-[14px] font-bold text-[var(--foreground)] shadow-[2px_2px_0_0_rgba(0,0,0,1)]">
-                  #{idx + 1}
-                </span>
-              </div>
-              <h3 className="heading-display mt-4 text-[20px] leading-tight">
-                {achievement.title}
-              </h3>
-              <p className="mt-3 font-display text-[32px] font-bold leading-none tracking-tight text-[var(--accent)] md:text-[40px]">
-                {achievement.metric}
-              </p>
-              <p className="mt-4 text-sm leading-6 text-[var(--foreground-subtle)]">
-                {achievement.description}
-              </p>
-            </article>
-          ))}
-        </div>
-=======
           <p className="text-[15px] leading-7 text-[var(--foreground-muted)] md:text-[18px]">
             Identified high database I/O usage in production, reworked the
             application data layer, and reduced unnecessary operations across
@@ -123,7 +76,6 @@ export function ImpactSection() {
           database I/O through data-fetching, query and architecture
           improvements.
         </p>
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
       </div>
     </section>
   );

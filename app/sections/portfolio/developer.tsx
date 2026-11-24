@@ -1,8 +1,5 @@
 import Image from "next/image";
-<<<<<<< HEAD
 import { personalInfo, education } from "@/data/portfolio-data";
-=======
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
 
 const focusTags = [
   "FULL STACK DEVELOPMENT",
@@ -25,11 +22,7 @@ export function DeveloperSection() {
           </h2>
         </div>
 
-<<<<<<< HEAD
-        <div className="reveal mt-12 overflow-hidden rounded-xl border border-[var(--border)] bg-white shadow-[6px_6px_0_0_rgba(0,0,0,1)]">
-=======
         <div className="reveal glass-card mt-14 overflow-hidden">
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
           <div className="grid items-stretch md:grid-cols-[0.85fr_1.15fr]">
             <div className="relative border-b border-[var(--border-soft)] md:border-b-0 md:border-r">
               <div className="relative aspect-[4/5] w-full md:aspect-auto md:h-full">
@@ -42,13 +35,8 @@ export function DeveloperSection() {
                   priority
                 />
               </div>
-<<<<<<< HEAD
-              <div className="flex items-center justify-between border-t border-[var(--border)] bg-black px-4 py-2.5 md:absolute md:bottom-0 md:left-0 md:right-0 md:border-t md:bg-black/95 md:backdrop-blur-sm">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
-=======
               <div className="flex items-center justify-between border-t border-[var(--border-soft)] bg-[rgba(1,13,35,0.7)] px-5 py-3 md:absolute md:bottom-0 md:left-0 md:right-0 md:backdrop-blur-sm">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--foreground-subtle)]">
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
                   Profile
                 </p>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--accent-bright)]">
@@ -62,11 +50,7 @@ export function DeveloperSection() {
               <h3 className="heading-display mt-4 text-[28px] leading-[1.1] md:text-[38px]">
                 Pratik Chogale
               </h3>
-<<<<<<< HEAD
-              <p className="mt-2 text-[15px] font-semibold uppercase tracking-[0.06em] text-[var(--foreground)]">
-=======
               <p className="mt-3 text-[15px] font-semibold uppercase tracking-[0.06em] text-[var(--foreground-muted)]">
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
                 Full Stack Developer
               </p>
               <p className="mt-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--foreground-subtle)]">
@@ -74,11 +58,7 @@ export function DeveloperSection() {
                 BSc IT Graduate
               </p>
 
-<<<<<<< HEAD
-              <p className="mt-6 text-[15px] leading-7 text-[var(--foreground-subtle)] md:text-base">
-=======
               <p className="mt-6 text-[15px] leading-7 text-[var(--foreground-muted)] md:text-[17px]">
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
                 BSc IT Graduate and Full Stack Developer focused on building
                 production-ready web applications, AI-powered features, CRM
                 systems and automation workflows.
@@ -114,10 +94,7 @@ export function DeveloperSection() {
                 <div className="mt-4 flex flex-wrap gap-2">
                   {focusTags.map((tag) => (
                     <span key={tag} className="tag">
-<<<<<<< HEAD
-=======
                       <span className="mr-2 h-1 w-1 rounded-full bg-[var(--accent-bright)]" />
->>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
                       {tag}
                     </span>
                   ))}
