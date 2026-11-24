@@ -1,4 +1,5 @@
 import { SectionHeading } from "./section-heading";
+import { Parallax } from "@/app/components/Parallax";
 
 const capabilities = [
   {
@@ -46,10 +47,16 @@ const capabilities = [
 ];
 
 export function CapabilitiesSection() {
+  // Three columns drift at different speeds so the cards look suspended.
+  const columns = [0, 1, 2].map((col) =>
+    capabilities.filter((_, i) => i % 3 === col)
+  );
+  const speeds = [28, 64, 44];
+
   return (
     <section
       id="services"
-      className="border-b border-[var(--border)] bg-[var(--background)]"
+      className="relative border-b border-[var(--border)] bg-[var(--background)]"
     >
       <div className="section-shell section-pad">
         <div className="reveal">
@@ -66,6 +73,7 @@ export function CapabilitiesSection() {
           />
         </div>
 
+<<<<<<< HEAD
         <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((cap, idx) => (
             <article
@@ -81,14 +89,35 @@ export function CapabilitiesSection() {
                   Engineering
                 </span>
               </div>
+=======
+        <div className="mt-16 grid gap-5 md:grid-cols-3 md:items-start">
+          {columns.map((col, colIdx) => (
+            <Parallax key={colIdx} speed={speeds[colIdx]} className="flex flex-col gap-5">
+              {col.map((cap) => (
+                <div key={cap.title} className="reveal">
+                <article
+                  data-cursor="view"
+                  data-cursor-label="View"
+                  className="glass-card lift flex flex-col gap-6 p-7 md:p-8"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-display text-xs font-semibold tracking-[0.2em] text-[var(--foreground-subtle)]">
+                      {cap.number}
+                    </span>
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--accent-bright)]">
+                      Engineering
+                    </span>
+                  </div>
+>>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
 
-              <div className="flex-1">
-                <h3 className="heading-display text-[22px]">{cap.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-[var(--foreground-muted)]">
-                  {cap.description}
-                </p>
-              </div>
+                  <div className="flex-1">
+                    <h3 className="heading-display text-[22px] leading-tight">{cap.title}</h3>
+                    <p className="mt-3 text-[15px] leading-7 text-[var(--foreground-muted)]">
+                      {cap.description}
+                    </p>
+                  </div>
 
+<<<<<<< HEAD
               <div className="flex flex-wrap gap-1.5 border-t border-[var(--border)] pt-5">
                 {cap.tags.map((tag) => (
                   <span key={tag} className="tag-soft">
@@ -97,6 +126,19 @@ export function CapabilitiesSection() {
                 ))}
               </div>
             </article>
+=======
+                  <div className="flex flex-wrap gap-1.5 border-t border-[var(--border-soft)] pt-5">
+                    {cap.tags.map((tag) => (
+                      <span key={tag} className="tag-soft">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+                </div>
+              ))}
+            </Parallax>
+>>>>>>> 1fdfc2107c52d9789ccf090d3d586bccd177bdda
           ))}
         </div>
       </div>

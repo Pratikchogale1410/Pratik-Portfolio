@@ -6,6 +6,7 @@ import { SelectedWorkSection } from "./sections/portfolio/selected-work";
 import { ImpactSection } from "./sections/portfolio/impact";
 import { DeveloperSection } from "./sections/portfolio/developer";
 import { ContactSection } from "./sections/portfolio/contact";
+import { LogoZoomSection } from "./sections/portfolio/logo-zoom";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <ImpactSection />
       <DeveloperSection />
       <ContactSection />
+      <LogoZoomSection />
     </main>
   );
 }

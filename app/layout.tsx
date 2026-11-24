@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Cormorant } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { RevealOnScroll } from "./components/RevealOnScroll";
+import { SmoothScroll } from "./components/SmoothScroll";
+import { CustomCursor } from "./components/CustomCursor";
+import { StickyCta } from "./components/StickyCta";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -11,10 +14,12 @@ const inter = Inter({
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space",
+// Serif italic for accent words (reference uses Cormorant italic 700).
+const cormorant = Cormorant({
+  variable: "--font-cormorant",
   subsets: ["latin"],
   weight: ["500", "600", "700"],
+  style: ["italic", "normal"],
   display: "swap",
 });
 
@@ -52,12 +57,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} h-full`}>
+    <html lang="en" className={`${inter.variable} ${cormorant.variable} h-full`}>
       <body className="flex min-h-screen w-full flex-col overflow-x-hidden bg-[var(--background)] text-[var(--foreground)]">
+        <SmoothScroll />
+        <CustomCursor />
         <RevealOnScroll />
         <Navbar />
-        <div className="flex-1 pt-16">{children}</div>
+        <div className="flex-1">{children}</div>
         <Footer />
+        <StickyCta />
       </body>
     </html>
   );
