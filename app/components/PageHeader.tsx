@@ -9,7 +9,7 @@ type PageHeaderProps = {
 
 export function PageHeader({ eyebrow, title, subtitle }: PageHeaderProps) {
   return (
-    <header className="border-b border-[var(--border)] bg-[var(--background)] pt-10 pb-12 md:pt-14 md:pb-16">
+    <header className="glow-bg border-b border-[var(--border)] pt-32 pb-16 md:pt-44 md:pb-20">
       <div className="section-shell">
         <Link
           href="/"

@@ -41,7 +41,7 @@ export default function ExperiencePage() {
 
       <section className="border-b border-[var(--border)]">
         <div className="section-shell py-16 md:py-20">
-          <div className="border border-[var(--border)] bg-white p-7 shadow-[5px_5px_0_0_rgba(10,10,10,1)] md:p-10">
+          <div className="border border-[var(--border)] bg-[var(--glass)] p-7 md:p-10">
             <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
               <div>
                 <p className="eyebrow">{exp.period}</p>
@@ -74,7 +74,7 @@ export default function ExperiencePage() {
             </div>
           </div>
 
-          <div className="mt-10 border border-[var(--border)] bg-white p-7 shadow-[4px_4px_0_0_rgba(10,10,10,1)] md:p-10">
+          <div className="mt-10 border border-[var(--border)] bg-[var(--glass)] p-7 md:p-10">
             <p className="eyebrow">Stack &amp; Tools</p>
             <div className="mt-5 flex flex-wrap gap-1.5">
               {tags.map((tag) => (

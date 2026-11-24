@@ -3,6 +3,7 @@
 import { useState, FormEvent } from "react";
 import { Mail, Phone, ArrowUpRight } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/app/components/social-icons";
+import { FlipText } from "@/app/components/FlipText";
 import { personalInfo } from "@/data/portfolio-data";
 
 export function ContactSection() {
@@ -56,23 +57,19 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="border-b border-[var(--border)] bg-[var(--dark)] text-[var(--dark-foreground)]"
+      className="relative overflow-hidden border-b border-[var(--border)] bg-[var(--dark)] text-[var(--dark-foreground)]"
     >
-      <div className="section-shell section-pad">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[70%] bg-[radial-gradient(60%_60%_at_50%_100%,rgba(0,86,251,0.35),transparent_70%)]" />
+      <div className="section-shell section-pad relative">
         <div className="grid gap-12 md:grid-cols-[1fr_1fr] md:gap-16">
           <div>
-            <p
-              className="text-[11px] font-semibold uppercase tracking-[0.18em]"
-              style={{ color: "var(--accent)" }}
-            >
-              Contact
-            </p>
-            <h2 className="heading-display mt-4 text-[36px] leading-[1.05] text-white md:text-[52px]">
+            <p className="eyebrow">Contact</p>
+            <h2 className="heading-display mt-5 text-[clamp(2.2rem,4.6vw,4rem)] leading-[1.04] text-white">
               Let&apos;s build
               <br />
               something useful.
             </h2>
-            <p className="mt-6 max-w-md text-base leading-7 text-[var(--dark-muted)] md:text-[17px]">
+            <p className="mt-6 max-w-md text-[15px] leading-7 text-[var(--dark-muted)] md:text-[18px]">
               Available for opportunities involving full-stack development,
               AI-powered applications, CRM systems, web applications and
               automation.
@@ -107,7 +104,7 @@ export function ContactSection() {
           </div>
 
           <div>
-            <div className="rounded-xl border border-[var(--border)] bg-white p-6 text-[var(--foreground)] shadow-[6px_6px_0_0_rgba(255,255,255,0.18)] md:p-8">
+            <div className="glass-card p-6 text-[var(--foreground)] md:p-8">
               <div className="flex items-center justify-between border-b border-[var(--border-soft)] pb-4">
                 <p className="eyebrow">Send a message</p>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--foreground-subtle)]">
@@ -155,18 +152,20 @@ export function ContactSection() {
                 <button
                   type="submit"
                   disabled={!valid || submitting}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-[var(--border)] bg-[var(--accent)] px-5 py-3 text-sm font-semibold uppercase tracking-[0.1em] text-white shadow-[3px_3px_0_0_rgba(10,10,10,1)] transition-transform duration-150 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_0_rgba(10,10,10,1)] disabled:cursor-not-allowed disabled:opacity-50"
+                  className="btn-primary w-full justify-between disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  {submitting ? "Sending..." : "Send Message"}
-                  <ArrowUpRight size={14} />
+                  <FlipText text={submitting ? "Sending..." : "Send Message"} />
+                  <span className="btn-icon-chip">
+                    <ArrowUpRight size={16} />
+                  </span>
                 </button>
 
                 {status.message ? (
                   <p
                     className={`text-sm ${
                       status.type === "success"
-                        ? "text-emerald-600"
-                        : "text-rose-600"
+                        ? "text-emerald-400"
+                        : "text-rose-400"
                     }`}
                   >
                     {status.message}
@@ -182,19 +181,20 @@ export function ContactSection() {
         .contact-input-light {
           width: 100%;
           border: 1px solid var(--border);
-          background: #ffffff;
+          border-radius: 14px;
+          background: rgba(1, 13, 35, 0.6);
           padding: 12px 14px;
           color: var(--foreground);
           font-size: 14px;
           outline: none;
-          transition: border-color 160ms ease, box-shadow 160ms ease;
+          transition: border-color 200ms ease, box-shadow 200ms ease;
         }
         .contact-input-light::placeholder {
           color: var(--foreground-subtle);
         }
         .contact-input-light:focus {
-          border-color: var(--accent);
-          box-shadow: 0 0 0 3px rgba(31, 78, 216, 0.12);
+          border-color: var(--accent-bright);
+          box-shadow: 0 0 0 3px rgba(0, 86, 251, 0.25);
         }
       `}</style>
     </section>

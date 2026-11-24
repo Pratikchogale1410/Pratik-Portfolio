@@ -8,6 +8,7 @@ import { ProcessSection } from "./sections/portfolio/process";
 import { TechnologySection } from "./sections/portfolio/technology";
 import { AgentMailSection } from "./sections/portfolio/agent-mail";
 import { ContactSection } from "./sections/portfolio/contact";
+import { LogoZoomSection } from "./sections/portfolio/logo-zoom";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <TechnologySection />
       <AgentMailSection />
       <ContactSection />
+      <LogoZoomSection />
     </main>
   );
 }

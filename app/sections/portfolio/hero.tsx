@@ -1,7 +1,10 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowRight, ArrowDown } from "lucide-react";
+import { registerGsap, DESKTOP_MOTION_QUERY, REDUCED_MOTION_QUERY } from "@/app/lib/motion";
+import { FlipText } from "@/app/components/FlipText";
 
 const tags = [
   "AI APPLICATIONS",
@@ -22,123 +25,206 @@ const modules = [
 ];
 
 export function HeroSection() {
+  const rootRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const reduce = window.matchMedia(REDUCED_MOTION_QUERY).matches;
+    const { gsap, ScrollTrigger } = registerGsap();
+
+    const ctx = gsap.context(() => {
+      // Intro (reference: word rise, stagger 60–525ms, cubic-bezier(.16,1,.3,1)).
+      if (!reduce) {
+        const intro = gsap.timeline({ defaults: { ease: "expo.out" } });
+        intro
+          .from("[data-intro='eyebrow']", { y: 14, opacity: 0, duration: 0.9 }, 0.06)
+          .from("[data-word] > span", { yPercent: 110, duration: 1.15, stagger: 0.04 }, 0.16)
+          .from("[data-intro='copy']", { y: 24, opacity: 0, duration: 1.1 }, 0.5)
+          .from("[data-intro='ctas'] > *", { y: 20, opacity: 0, duration: 0.9, stagger: 0.08 }, 0.6)
+          .from("[data-intro='tags'] > *", { y: 14, opacity: 0, duration: 0.7, stagger: 0.04 }, 0.7)
+          .from(
+            "[data-intro='visual']",
+            { y: 36, scale: 0.96, opacity: 0, duration: 1.3, ease: "expo.out" },
+            0.35
+          );
+      }
+
+      // Scroll-out and parallax on desktop only (reference: scrub .55).
+      ScrollTrigger.matchMedia({
+        [DESKTOP_MOTION_QUERY]: () => {
+          gsap.to("[data-hero-copy]", {
+            opacity: 0,
+            y: -80,
+            ease: "none",
+            scrollTrigger: {
+              trigger: root,
+              start: "top top",
+              end: "bottom bottom",
+              scrub: 0.55,
+              invalidateOnRefresh: true,
+            },
+          });
+          gsap.fromTo(
+            "[data-hero-visual]",
+            { y: -30 },
+            {
+              y: 30,
+              ease: "none",
+              scrollTrigger: { trigger: root, start: "top top", end: "bottom top", scrub: 0.85 },
+            }
+          );
+        },
+      });
+    }, root);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
       id="top"
-      className="relative border-b border-[var(--border)] grid-bg"
+      ref={rootRef}
+      className="glow-bg relative overflow-hidden border-b border-[var(--border)] pt-28 md:pt-40"
     >
-      <div className="section-shell grid gap-10 pb-14 pt-12 md:grid-cols-[1.15fr_0.85fr] md:gap-12 md:pb-24 md:pt-24">
-        <div className="min-w-0">
-          <p className="eyebrow">Full Stack Developer</p>
+      <div className="grid-bg pointer-events-none absolute inset-0 opacity-60 [mask-image:linear-gradient(to_bottom,black,transparent_80%)]" />
 
-          <h1 className="heading-display mt-5 text-[34px] leading-[1.05] md:mt-6 md:text-[64px]">
-            Building software that
-            <br />
-            solves <span className="italic text-[var(--accent)]">real</span>{" "}
-            problems.
-          </h1>
+      <div className="section-shell relative flex w-full min-w-0 flex-col items-center text-center" data-hero-copy>
+        <p data-intro="eyebrow" className="eyebrow">
+          Full Stack Developer
+        </p>
 
-          <p className="mt-5 max-w-xl text-[15px] leading-7 text-[var(--foreground-muted)] md:mt-6 md:text-[17px]">
-            I build production-ready AI-powered applications, CRM systems and
-            scalable web products — engineered to actually work in production.
-          </p>
+        <h1 className="heading-display mt-6 w-full max-w-full text-[38px] leading-[1.04] sm:text-[48px] md:text-[68px] lg:text-[80px]">
+          <span className="block">
+            <Word text="Building" /> <Word text="software" /> <Word text="that" />
+          </span>
+          <span className="block">
+            <Word text="solves" />{" "}
+            <Word text="real" className="text-display-accent text-[var(--accent-bright)]" />{" "}
+            <Word text="problems." />
+          </span>
+        </h1>
 
-          <div className="mt-6 flex flex-wrap items-center gap-3 md:mt-8">
-            <Link href="/projects" className="btn-primary">
-              View My Work
+        <p
+          data-intro="copy"
+          className="mt-6 max-w-xl text-[15px] leading-7 text-[var(--foreground-muted)] md:mt-8 md:text-[18px]"
+        >
+          I build production-ready AI-powered applications, CRM systems and
+          scalable web products — engineered to actually work in production.
+        </p>
+
+        <div data-intro="ctas" className="mt-8 flex flex-wrap items-center justify-center gap-3 md:mt-10">
+          <Link href="/projects" className="btn-primary">
+            <FlipText text="View My Work" />
+            <span className="btn-icon-chip">
               <ArrowRight size={16} />
-            </Link>
-            <Link href="/#contact" className="btn-secondary">
-              Let&apos;s Connect
-            </Link>
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-2 md:mt-10">
-            {tags.map((tag) => (
-              <span key={tag} className="tag">
-                {tag}
-              </span>
-            ))}
-          </div>
+            </span>
+          </Link>
+          <Link href="/#contact" className="btn-secondary">
+            <FlipText text="Let's Connect" />
+          </Link>
         </div>
 
-        <div className="relative min-w-0">
-          <ArchitectureVisual />
+        <div data-intro="tags" className="mt-8 flex flex-wrap justify-center gap-2 md:mt-10">
+          {tags.map((tag) => (
+            <span key={tag} className="tag">
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div data-intro="visual" className="relative mt-16 w-full md:mt-20">
+          <div data-hero-visual>
+            <ArchitectureVisual />
+          </div>
         </div>
       </div>
 
-      <div className="section-shell hidden items-center justify-between border-t border-[var(--border)] py-5 md:flex">
+      <div className="section-shell relative mt-16 hidden items-center justify-between border-t border-[var(--border)] py-6 md:flex">
         <p className="eyebrow-muted">Production Software Engineer</p>
         <p className="text-xs text-[var(--foreground-subtle)]">
           Based in Khopoli, Maharashtra, India
         </p>
-        <a
+        <Link
           href="/#impact"
           className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--foreground-muted)] transition-colors hover:text-[var(--foreground)]"
         >
           Scroll
           <ArrowDown size={14} className="animate-bounce" />
-        </a>
+        </Link>
       </div>
     </section>
   );
 }
 
+/** Word mask for the rise animation: the word sits inside an overflow-hidden box. */
+function Word({ text, className = "" }: { text: string; className?: string }) {
+  return (
+    <span data-word className={`inline-block overflow-hidden align-bottom pb-[0.08em] ${className}`}>
+      <span className="inline-block">{text}</span>
+    </span>
+  );
+}
+
 function ArchitectureVisual() {
   return (
-    <div className="relative w-full">
-        <div className="relative rounded-lg border-[1.5px] border-[var(--border)] bg-white shadow-[4px_4px_0_0_rgba(10,10,10,1)]">
-          <div className="flex items-center justify-between gap-3 rounded-t-[8px] border-b border-[var(--border)] bg-[var(--background)] px-2.5 py-1.5 md:px-3 md:py-2">
-            <div className="flex shrink-0 items-center gap-1">
-              <span className="h-1.5 w-1.5 rounded-full border border-[var(--border)] bg-white md:h-2 md:w-2" />
-              <span className="h-1.5 w-1.5 rounded-full border border-[var(--border)] bg-white md:h-2 md:w-2" />
-              <span className="h-1.5 w-1.5 rounded-full border border-[var(--border)] bg-white md:h-2 md:w-2" />
-            </div>
-            <div className="min-w-0 flex-1 truncate text-center text-[8px] font-semibold uppercase tracking-[0.14em] text-[var(--foreground-muted)] md:text-[9px] md:tracking-[0.16em]">
-              pratik.dev / system
-            </div>
-            <p className="shrink-0 text-[8px] font-semibold uppercase tracking-[0.14em] text-[var(--accent)] md:text-[9px] md:tracking-[0.16em]">
-              Live
+    <div className="glass-card mx-auto w-full max-w-[1000px] overflow-hidden rounded-[28px] p-3 text-left shadow-[0_40px_120px_-30px_rgba(0,86,251,0.45)] md:p-5">
+      <div className="flex items-center justify-between gap-3 rounded-[18px] border-b border-[var(--border-soft)] bg-[rgba(1,13,35,0.6)] px-4 py-3">
+        <div className="flex shrink-0 items-center gap-1.5">
+          <span className="h-2 w-2 rounded-full bg-[#ff6b70]" />
+          <span className="h-2 w-2 rounded-full bg-[#ffd166]" />
+          <span className="h-2 w-2 rounded-full bg-[#4ade80]" />
+        </div>
+        <div className="min-w-0 flex-1 truncate text-center text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--foreground-subtle)]">
+          pratik.dev / system
+        </div>
+        <p className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--accent-bright)]">
+          Live
+        </p>
+      </div>
+
+      <div className="border-b border-[var(--border-soft)] px-4 py-4 md:px-5">
+        <div className="flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--foreground-subtle)]">
+              System Overview
+            </p>
+            <p className="mt-1 truncate font-display text-[17px] font-semibold tracking-tight md:text-[20px]">
+              Production Stack
             </p>
           </div>
-
-          <div className="border-b border-[var(--border)] bg-white px-2.5 py-2 md:px-3 md:py-2.5">
-            <div className="flex items-center justify-between gap-3">
-              <div className="min-w-0">
-                <p className="text-[8px] font-semibold uppercase tracking-[0.16em] text-[var(--foreground-subtle)] md:text-[9px] md:tracking-[0.18em]">
-                  System Overview
-                </p>
-                <p className="mt-0.5 truncate font-display text-[13px] font-semibold leading-tight tracking-tight md:text-[15px]">
-                  Production Stack
-                </p>
-              </div>
-              <div className="flex shrink-0 items-center gap-1">
-                <span className="h-1 w-1 rounded-full bg-[var(--accent)] md:h-1.5 md:w-1.5" />
-                <span className="text-[8px] font-semibold uppercase tracking-[0.14em] text-[var(--foreground-muted)] md:text-[9px] md:tracking-[0.16em]">
-                  Production
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-2 px-2.5 py-3 md:space-y-2.5 md:px-3 md:py-4">
-            {modules.map((m) => (
-              <ModuleRow key={m.code} module={m} />
-            ))}
-          </div>
-
-          <div className="flex items-center justify-between border-t border-[var(--border)] bg-[var(--background)] px-2.5 py-1.5 md:px-3 md:py-2">
-            <p className="text-[8px] font-semibold uppercase tracking-[0.14em] text-[var(--foreground-subtle)] md:text-[9px] md:tracking-[0.16em]">
-              Stack
-            </p>
-            <p className="text-[8px] font-semibold uppercase tracking-[0.14em] text-[var(--foreground)] md:text-[9px] md:tracking-[0.16em]">
-              Next.js
-            </p>
+          <div className="flex shrink-0 items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent-strong)] shadow-[0_0_8px_rgba(17,99,255,0.9)]" />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--foreground-muted)]">
+              Production
+            </span>
           </div>
         </div>
+      </div>
 
-        <div className="pointer-events-none absolute -bottom-1.5 left-5 right-5 hidden h-2 rounded border-[1.5px] border-[var(--border)] bg-white md:block" />
-        <div className="pointer-events-none absolute -bottom-4 left-10 right-10 hidden h-2 rounded border-[1.5px] border-[var(--border)] bg-white md:block" />
+      <div className="grid gap-3 p-3 sm:grid-cols-2 md:grid-cols-3 md:p-4">
+        {modules.map((m, i) => (
+          <div
+            key={m.code}
+            className="float-y"
+            style={{
+              ["--float-dur" as string]: `${7.4 + (i % 4) * 0.6}s`,
+              ["--float-delay" as string]: `${-(i * 0.8)}s`,
+            }}
+          >
+            <ModuleRow module={m} />
+          </div>
+        ))}
+      </div>
+
+      <div className="flex items-center justify-between border-t border-[var(--border-soft)] bg-[rgba(1,13,35,0.6)] px-4 py-3">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--foreground-subtle)]">
+          Stack
+        </p>
+        <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--foreground)]">
+          Next.js
+        </p>
+      </div>
     </div>
   );
 }
@@ -149,27 +235,28 @@ function ModuleRow({
   module: { code: string; label: string; sub: string; accent?: boolean };
 }) {
   return (
-    <div className="flex items-center gap-2 rounded-md border border-[var(--border)] bg-white p-2 md:gap-3 md:p-2.5">
+    <div
+      data-cursor="pointer"
+      className="glass-card flex items-center gap-3 rounded-[18px] p-3 text-left transition-transform duration-500 ease-out hover:-translate-y-1"
+    >
       <div
-        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded border border-[var(--border)] md:h-9 md:w-9 ${
-          module.accent ? "bg-[var(--accent)] text-white" : "bg-[var(--background)] text-[var(--foreground)]"
+        className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
+          module.accent
+            ? "bg-[var(--accent)] text-white shadow-[0_0_20px_rgba(0,86,251,0.6)]"
+            : "bg-[rgba(255,255,255,0.06)] text-[var(--foreground)]"
         }`}
       >
-        <span className="font-display text-[10px] font-bold leading-none md:text-[11px]">
-          {module.code}
-        </span>
+        <span className="font-display text-[11px] font-bold leading-none">{module.code}</span>
       </div>
       <div className="min-w-0 flex-1">
-        <p className="truncate text-[10px] font-semibold leading-tight tracking-tight md:text-[11px]">
+        <p className="truncate text-[12px] font-semibold leading-tight tracking-tight">
           {module.label}
         </p>
-        <p className="mt-0.5 truncate text-[9px] text-[var(--foreground-muted)] md:text-[10px]">
-          {module.sub}
-        </p>
+        <p className="mt-0.5 truncate text-[11px] text-[var(--foreground-subtle)]">{module.sub}</p>
       </div>
       <span
-        className={`h-1.5 w-1.5 shrink-0 rounded-full md:h-1.5 md:w-1.5 ${
-          module.accent ? "bg-[var(--accent)]" : "bg-[var(--border)]"
+        className={`h-1.5 w-1.5 shrink-0 rounded-full ${
+          module.accent ? "bg-[var(--accent-bright)]" : "bg-[rgba(255,255,255,0.25)]"
         }`}
       />
     </div>
