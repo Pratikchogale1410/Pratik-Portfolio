@@ -103,3 +103,51 @@ Scrub-linked tweens use `ease: "none"`.
 | Logo zoom | **Not verified in the reference.** Taken from the brief: `scrub`, scale `1 -> 40` |
 | Button text flip | CSS `rotateX(90deg)`, `.75s` |
 | Pill header hide and show | `.55s cubic-bezier(.16,1,.3,1)` |
+
+---
+
+## Homepage pass (brief timings, video not measured)
+
+Revised for a calmer pace: scroll scrubs raised from 0.6 to 1.2, pin distances lengthened, hero intro stagger raised to 0.14s with 1.4–1.6s rises, and badge drift slowed to 12s. Summary and Developer sections were removed from the homepage. The table below predates that revision, so treat its numbers as the earlier values.
+
+The brief asked for timings measured from `screen-capture.webm`. That file is not on this machine, so the values below are the brief's own numbers, implemented as written. They are not checked against the recording.
+
+| Section | Trigger | Property | Duration | Ease | Notes |
+|---|---|---|---|---|---|
+| Hero H1 lines | load, stagger 0.08 from 0.15s | `yPercent` 110 → 0 inside `.hm-mask` | 1.15s | `expo.out` | Line-by-line reveal |
+| Hero accent word | load, at 0.8s | opacity 0 → 1 | 1.0s | `expo.out` | Serif italic word fades in last |
+| Hero eyebrow | load, at 0.05s | y 14 → 0, opacity | 0.9s | `expo.out` | |
+| Hero sub and CTAs | load, stagger 0.1 from 0.7s | y 22 → 0, opacity | 0.9s | `expo.out` | |
+| Hero badges | load, stagger 0.09 from 0.8s | scale 0.6 → 1, opacity | 0.8s | `back.out(1.35)` | Then drift forever |
+| Hero badge drift | always (CSS) | `translate` −8px ↔ +10px, alternate | 8s | `ease-in-out` | Each badge has its own delay |
+| Hero badge pull | pointermove over hero, desktop | `x`, `y` toward pointer, ±18–34px | 1.2s | `power3.out` | `quickTo`; depth varies per badge |
+| Hero strip | scroll, scrub | `xPercent` 0 → −30 | scrub 0.55 | `none` | Start `top top`, end `bottom top` |
+| Card hover (strip) | hover | image scale 1 → 1.05 | 0.55s | `expo.out` (CSS) | |
+| Services stack | scroll, pinned, scrub 0.6 | card in `yPercent` 110 → 0; previous card scale 0.92, y −4%, opacity 0.55 | 1.0 per step, `(N−1)×100vh` total | `power3.out` | Desktop with fine pointer only |
+| Statement words | scroll, pinned, scrub 0.6 | colour `rgba(11,11,15,.16)` → `#0b0b0f`, stagger 0.08 | 1.0 of 1.4× scroll | `none` | Colour, not opacity, as the brief asks |
+| Statement tags | scroll, after words | y 60 → 0, opacity 0 → 1, stagger 0.12 | 0.6 each | `back.out(1.35)` | Rotations −4° to 4° (`--r`) |
+| Tag hover tilt | hover (CSS) | rotate to `−0.5 × r`, scale 1.04 | 0.5s | `cubic-bezier(.22,1,.36,1)` | |
+| Impact count-up | enters at top 80%, once | 12→1 and 15→1.5 (text) | 1.6s | `power2.out` | Reduced motion shows end values |
+| Work stack | scroll, pinned, scrub 0.6 | same as services | same | `power3.out` | |
+| Experience entries | enters at top 75%, once | `yPercent` 105 → 0 inside mask, stagger 0.12 | 1.0s | `expo.out` | |
+| Technology tiles | enters at top 85%, once | opacity 0 → 1, y 24 → 0, stagger 0.08 | 0.9s | `power3.out` | |
+| Tile hover | hover (CSS) | y −6px, shadow | 0.5s | `cubic-bezier(.22,1,.36,1)` | |
+| How I Build track | scroll, pinned, scrub 0.6 | `x` 0 → −(track − viewport) | scroll length + 40vh | `none` | Desktop only; stacks on smaller screens |
+| Logo zoom | scroll, pinned, scrub 0.6 | `clipPath` circle 0% → 150% | scroll `+130%` | `none` | Reverses on scroll up |
+| Button text swap | hover (CSS) | label translateY 0 → −170%, copy from +170% → 0 | 0.55s | `cubic-bezier(.76,0,.24,1)` | |
+| Button arrow | hover (CSS) | translateX 3px, rotate −45° | 0.55s | `cubic-bezier(.76,0,.24,1)` | |
+| Link underline | hover (CSS) | `scaleX` 0 → 1 | 0.5s | `cubic-bezier(.22,1,.36,1)` | |
+| Cursor trail | pointermove | SVG curve of last 600ms, opacity fades with age | 0.6s | linear | Fine pointer only |
+| Cursor press | mousedown / mouseup | dot scale 0.7 / 1 | 0.2s / 0.4s | `power2.out` / `back.out(2)` | Ring shrinks via `.is-down` |
+| Header | scroll > 80px | `::before` background and blur opacity 0 → 1 | 0.35s | `ease` | Pill shape is always present; top state is transparent |
+
+### Reduced motion and touch
+
+- Reduced motion: no intro timeline, no pins, no pointer pull, no zoom (circle shown static), no cursor trail, no drift. Count-up shows end values. Entrance reveals are skipped.
+- Under 1024px or without a fine pointer: pins are off, cards and tracks are normal flow (How I Build becomes a horizontal scroll-snap row), cursor is off.
+
+### Not matched exactly
+
+- Timings are the brief's numbers, not measured from the video (file missing).
+- The logo zoom reveals Contact after the circle covers the screen; the contact content does not slide under the circle.
+- The header pill shape is always rounded; only its background fades in, so the width does not change on scroll.

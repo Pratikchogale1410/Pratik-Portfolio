@@ -1,0 +1,741 @@
+/*
+ * Homepage system. Every rule is prefixed with hm- or scoped under .hm so it
+ * cannot collide with the legacy rules in app/globals.css used by other pages.
+ * Palette values are the brief's estimates (see palette.md). Motion timings
+ * are listed in motion-spec.md.
+ */
+
+:root {
+  --hm-navy: #0a1030;
+  --hm-royal: #1f4bff;
+  --hm-lime: #c8f04a;
+  --hm-ink: #0b0b0f;
+  --hm-white: #ffffff;
+  --hm-ink-muted: rgba(11, 11, 15, 0.56);
+  --hm-on-navy-muted: rgba(255, 255, 255, 0.64);
+  --hm-lavender: #e8e6ff;
+  --hm-peach: #ffd9c4;
+  --hm-cream: #fff1d6;
+  --hm-mint: #d7f5c8;
+  --hm-pink: #ffd0e8;
+  --hm-sky: #cfe0ff;
+  --hm-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --hm-ease-swap: cubic-bezier(0.76, 0, 0.24, 1);
+  --hm-radius: 28px;
+}
+
+.hm {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  color: var(--hm-ink);
+  background: var(--hm-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+.hm-navy {
+  background: var(--hm-navy);
+  color: var(--hm-white);
+}
+
+.hm-wrap {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 48px);
+}
+
+.hm-section {
+  position: relative;
+  padding: clamp(120px, 15vw, 200px) 0;
+  overflow: hidden;
+}
+
+/* ---------- Type ---------- */
+
+.hm-h1,
+.hm-h2 {
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+}
+
+.hm-h1 {
+  font-size: clamp(44px, 7.4vw, 112px);
+}
+
+.hm-h2 {
+  font-size: clamp(38px, 5.6vw, 84px);
+}
+
+.hm-h3 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  font-size: clamp(22px, 2.2vw, 30px);
+}
+
+.hm-serif {
+  font-family: var(--font-cormorant), "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.hm-lead {
+  font-size: clamp(16px, 1.5vw, 19px);
+  line-height: 1.6;
+}
+
+.hm-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Pill kicker with a sparkle, used above every section heading. */
+.hm-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px 7px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: var(--hm-white);
+  color: var(--hm-ink);
+}
+
+.hm-navy .hm-kicker {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--hm-white);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+}
+
+.hm-kicker svg {
+  color: var(--hm-royal);
+}
+
+.hm-navy .hm-kicker svg {
+  color: var(--hm-lime);
+}
+
+/* Overflow-hidden line mask used by the H1 and headings. */
+.hm-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.hm-mask > span {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* ---------- Buttons ---------- */
+
+.hm-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  height: 52px;
+  padding: 0 6px 0 22px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background-color 0.35s var(--hm-ease-out), color 0.35s var(--hm-ease-out);
+}
+
+.hm-btn--light {
+  background: var(--hm-white);
+  color: var(--hm-ink);
+}
+
+.hm-btn--ink {
+  background: var(--hm-ink);
+  color: var(--hm-white);
+}
+
+.hm-btn--ghost {
+  padding: 0 22px;
+  box-shadow: inset 0 0 0 1px rgba(11, 11, 15, 0.2);
+  color: var(--hm-ink);
+}
+
+.hm-navy .hm-btn--ghost {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+  color: var(--hm-white);
+}
+
+.hm-btn-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--hm-royal);
+  color: var(--hm-white);
+  overflow: hidden;
+}
+
+.hm-btn-icon svg {
+  transition: transform 0.55s var(--hm-ease-swap);
+}
+
+.hm-btn:hover .hm-btn-icon svg {
+  transform: translateX(3px) rotate(-45deg);
+}
+
+/* Text swap: two stacked copies inside a clipped box; hover slides the second in. */
+.hm-swap {
+  position: relative;
+  display: inline-block;
+  height: 1.25em;
+  overflow: hidden;
+  line-height: 1.25em;
+}
+
+.hm-swap > span {
+  display: block;
+  transition: transform 0.55s var(--hm-ease-swap);
+}
+
+.hm-swap > span + span {
+  position: absolute;
+  inset: 0;
+  transform: translateY(170%);
+}
+
+.hm-btn:hover .hm-swap > span:first-child {
+  transform: translateY(-170%);
+}
+
+.hm-btn:hover .hm-swap > span + span {
+  transform: translateY(0);
+}
+
+/* Link underline that grows left to right on hover. */
+.hm-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  padding-bottom: 2px;
+}
+
+.hm-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.5s var(--hm-ease-out);
+}
+
+.hm-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* ---------- Hero ---------- */
+
+.hm-hero {
+  min-height: 100svh;
+  padding: clamp(132px, 16vh, 170px) 0 0;
+  background-color: var(--hm-navy);
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, rgba(255, 255, 255, 0.85), transparent),
+    radial-gradient(1px 1px at 78% 12%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 40% 64%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 88% 58%, rgba(255, 255, 255, 0.75), transparent),
+    radial-gradient(1px 1px at 22% 82%, rgba(255, 255, 255, 0.55), transparent),
+    radial-gradient(1px 1px at 62% 36%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(900px 500px at 70% 20%, rgba(31, 75, 255, 0.28), transparent 70%);
+  background-size:
+    320px 320px,
+    420px 420px,
+    360px 360px,
+    500px 500px,
+    280px 280px,
+    440px 440px,
+    100% 100%;
+}
+
+.hm-grid-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 96px 96px;
+  -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 85%);
+  mask-image: linear-gradient(to bottom, black 20%, transparent 85%);
+}
+
+.hm-hero-copy {
+  position: relative;
+  max-width: 980px;
+}
+
+.hm-hero .hm-accent {
+  color: var(--hm-lime);
+}
+
+.hm-badge {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: clamp(76px, 8vw, 108px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--hm-ink);
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.5);
+  animation: hm-drift 12s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes hm-drift {
+  from {
+    translate: 0 -8px;
+  }
+  to {
+    translate: 0 10px;
+  }
+}
+
+.hm-strip {
+  position: relative;
+  margin-top: clamp(64px, 9vw, 110px);
+  overflow: hidden;
+  padding-bottom: clamp(56px, 7vw, 96px);
+}
+
+.hm-strip-track {
+  display: flex;
+  gap: clamp(16px, 2vw, 28px);
+  width: max-content;
+  padding: 0 clamp(20px, 4vw, 48px);
+}
+
+.hm-strip-card {
+  position: relative;
+  width: clamp(280px, 40vw, 560px);
+  aspect-ratio: 16 / 10;
+  border-radius: var(--hm-radius);
+  overflow: hidden;
+  background: var(--hm-royal);
+  color: var(--hm-white);
+}
+
+.hm-strip-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s var(--hm-ease-out);
+}
+
+.hm-strip-card:hover img {
+  transform: scale(1.05);
+}
+
+.hm-strip-meta {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* ---------- Pastel cards and tags ---------- */
+
+.hm-card {
+  position: relative;
+  border-radius: var(--hm-radius);
+  padding: clamp(28px, 3.4vw, 48px);
+  color: var(--hm-ink);
+}
+
+.hm-tint-lavender { background: var(--hm-lavender); }
+.hm-tint-peach { background: var(--hm-peach); }
+.hm-tint-cream { background: var(--hm-cream); }
+.hm-tint-mint { background: var(--hm-mint); }
+.hm-tint-pink { background: var(--hm-pink); }
+.hm-tint-sky { background: var(--hm-sky); }
+
+.hm-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--hm-ink);
+  white-space: nowrap;
+}
+
+.hm-chip--dark {
+  background: var(--hm-ink);
+  color: var(--hm-white);
+}
+
+.hm-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: none;
+}
+
+/* Tilted feature tag: outer element carries the rotation, inner one is animated by GSAP. */
+.hm-tilt {
+  transform: rotate(var(--r, 0deg));
+  transition: transform 0.5s var(--hm-ease-out);
+}
+
+.hm-tilt:hover {
+  transform: rotate(calc(var(--r, 0deg) * -0.5)) scale(1.04);
+}
+
+.hm-tilt > .hm-tilt-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 600;
+  background: var(--hm-white);
+  color: var(--hm-ink);
+  box-shadow: 0 18px 40px -22px rgba(11, 11, 15, 0.35);
+}
+
+/* ---------- Pinned stacking (desktop with fine pointer; static otherwise) ---------- */
+
+.hm-stack-stage {
+  position: relative;
+}
+
+.hm-stack-stage.is-pinned {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hm-stack-stage .hm-stack-card {
+  width: 100%;
+}
+
+.hm-stack-stage.is-pinned .hm-stack-slot {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding: 12vh clamp(20px, 4vw, 48px) 6vh;
+}
+
+.hm-stack-stage.is-pinned .hm-stack-card {
+  height: 100%;
+  max-height: 76vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 30px 80px -30px rgba(11, 11, 15, 0.35);
+}
+
+.hm-stack-list {
+  display: grid;
+  gap: 24px;
+}
+
+/* ---------- Statement ---------- */
+
+.hm-statement-stage {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+}
+
+.hm-statement-text {
+  font-size: clamp(34px, 4.8vw, 72px);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+/* ---------- Impact ---------- */
+
+.hm-impact-block {
+  border-radius: 36px;
+  background: var(--hm-royal);
+  color: var(--hm-white);
+  padding: clamp(32px, 5vw, 72px);
+}
+
+.hm-count {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  font-size: clamp(56px, 9vw, 148px);
+  line-height: 0.95;
+}
+
+/* ---------- Work and process horizontal track ---------- */
+
+.hm-track-stage {
+  position: relative;
+  overflow: hidden;
+}
+
+.hm-track-stage.is-pinned {
+  height: 100vh;
+}
+
+.hm-track {
+  display: flex;
+  gap: clamp(20px, 2.4vw, 32px);
+  padding: 0 clamp(20px, 4vw, 48px);
+  will-change: transform;
+}
+
+.hm-track-card {
+  flex: 0 0 clamp(300px, 34vw, 460px);
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: var(--hm-radius);
+  padding: clamp(26px, 3vw, 40px);
+  color: var(--hm-ink);
+}
+
+/* ---------- Technology tiles ---------- */
+
+.hm-tile {
+  border-radius: 24px;
+  padding: 28px;
+  transition: transform 0.5s var(--hm-ease-out), box-shadow 0.5s var(--hm-ease-out);
+}
+
+.hm-tile:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 50px -26px rgba(11, 11, 15, 0.35);
+}
+
+/* ---------- Logo zoom ---------- */
+
+.hm-zoom-stage {
+  position: relative;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--hm-navy);
+}
+
+.hm-zoom-circle {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--hm-royal);
+  clip-path: circle(0% at 50% 50%);
+  color: var(--hm-white);
+}
+
+.hm-zoom-mark {
+  font-size: clamp(40px, 7vw, 120px);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.hm-zoom-mark span {
+  color: var(--hm-lime);
+}
+
+/* ---------- Contact ---------- */
+
+.hm-input {
+  width: 100%;
+  border: 0;
+  border-radius: 18px;
+  background: var(--hm-white);
+  padding: 16px 18px;
+  font-size: 15px;
+  color: var(--hm-ink);
+  outline: none;
+  box-shadow: inset 0 0 0 1px rgba(11, 11, 15, 0.12);
+  transition: box-shadow 0.25s ease;
+}
+
+.hm-input:focus {
+  box-shadow: inset 0 0 0 2px var(--hm-royal);
+}
+
+/* ---------- Footer ---------- */
+
+.hm-footer {
+  position: relative;
+  overflow: hidden;
+  background: var(--hm-navy);
+  color: var(--hm-white);
+}
+
+.hm-footer-glow {
+  position: absolute;
+  left: 50%;
+  bottom: -30%;
+  width: 120%;
+  height: 80%;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(31, 75, 255, 0.45), transparent);
+  pointer-events: none;
+}
+
+.hm-wordmark {
+  font-size: clamp(64px, 17vw, 300px);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  line-height: 0.85;
+  background: linear-gradient(180deg, #ffffff 10%, rgba(200, 240, 74, 0.9) 75%, rgba(31, 75, 255, 0.2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  white-space: nowrap;
+}
+
+/* ---------- Cursor trail (desktop, fine pointer only) ---------- */
+
+.hm-trail {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.hm-trail.is-visible {
+  opacity: 1;
+}
+
+/* ---------- Header pill (transparent at top, floating pill after 80px) ---------- */
+
+.hm-nav-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 62px;
+  padding: 0 8px 0 20px;
+  border-radius: 999px;
+  color: var(--hm-white);
+}
+
+.hm-nav-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(10, 16, 48, 0.72);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 20px 50px -24px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.site-header.is-scrolled .hm-nav-bar::before {
+  opacity: 1;
+}
+
+/* ---------- Reduced motion and touch: plain layout, no pins, no cursor ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .hm-badge {
+    animation: none;
+  }
+
+  .hm-stack-stage.is-pinned,
+  .hm-track-stage.is-pinned,
+  .hm-zoom-stage {
+    height: auto;
+  }
+
+  .hm-zoom-stage {
+    height: auto;
+    min-height: 60vh;
+  }
+
+  .hm-zoom-circle {
+    clip-path: none;
+    position: relative;
+    height: 60vh;
+  }
+
+  .hm-trail {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hm-stack-stage.is-pinned,
+  .hm-track-stage.is-pinned {
+    height: auto;
+  }
+
+  .hm-stack-stage .hm-stack-slot {
+    position: relative;
+    inset: auto;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  .hm-stack-stage .hm-stack-card {
+    max-height: none;
+  }
+
+  .hm-track {
+    width: auto;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .hm-track-card {
+    scroll-snap-align: start;
+  }
+
+  /* Without the desktop pin the zoom shows its full royal panel statically. */
+  .hm-zoom-stage {
+    height: auto;
+    min-height: 60vh;
+  }
+
+  .hm-zoom-circle {
+    position: relative;
+    height: 60vh;
+    clip-path: none;
+  }
+
+  .hm-trail {
+    display: none;
+  }
+}

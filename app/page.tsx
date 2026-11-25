@@ -1,25 +1,27 @@
-import { HeroSection } from "./sections/portfolio/hero";
-import { SummarySection } from "./sections/portfolio/summary";
-import { ExperienceSection } from "./sections/portfolio/experience";
-import { TechnologySection } from "./sections/portfolio/technology";
-import { SelectedWorkSection } from "./sections/portfolio/selected-work";
-import { ImpactSection } from "./sections/portfolio/impact";
-import { DeveloperSection } from "./sections/portfolio/developer";
-import { ContactSection } from "./sections/portfolio/contact";
-import { LogoZoomSection } from "./sections/portfolio/logo-zoom";
+import { HeroHome } from "./components/home/HeroHome";
+import { Services } from "./components/home/Services";
+import { Statement } from "./components/home/Statement";
+import { Impact } from "./components/home/Impact";
+import { Work } from "./components/home/Work";
+import { Experience } from "./components/home/Experience";
+import { Technology } from "./components/home/Technology";
+import { Process } from "./components/home/Process";
+import { ZoomReveal } from "./components/home/ZoomReveal";
+import { Contact } from "./components/home/Contact";
 
 export default function Home() {
   return (
-    <main className="bg-[var(--background)]">
-      <HeroSection />
-      <SummarySection />
-      <ExperienceSection />
-      <TechnologySection />
-      <SelectedWorkSection />
-      <ImpactSection />
-      <DeveloperSection />
-      <ContactSection />
-      <LogoZoomSection />
+    <main>
+      <HeroHome />
+      <Services />
+      <Statement />
+      <Impact />
+      <Work />
+      <Experience />
+      <Technology />
+      <Process />
+      <ZoomReveal />
+      <Contact />
     </main>
   );
 }

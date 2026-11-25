@@ -6,7 +6,6 @@ import { Footer } from "./components/Footer";
 import { RevealOnScroll } from "./components/RevealOnScroll";
 import { SmoothScroll } from "./components/SmoothScroll";
 import { CustomCursor } from "./components/CustomCursor";
-import { StickyCta } from "./components/StickyCta";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -65,7 +64,6 @@ export default function RootLayout({
         <Navbar />
         <div className="flex-1">{children}</div>
         <Footer />
-        <StickyCta />
       </body>
     </html>
   );

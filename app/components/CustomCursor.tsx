@@ -18,6 +18,7 @@ export function CustomCursor() {
   const dotRef = useRef<HTMLDivElement | null>(null);
   const ringRef = useRef<HTMLDivElement | null>(null);
   const labelRef = useRef<HTMLSpanElement | null>(null);
+  const pathRef = useRef<SVGPathElement | null>(null);
 
   useEffect(() => {
     const mql = window.matchMedia(DESKTOP_MOTION_QUERY);
@@ -36,6 +37,30 @@ export function CustomCursor() {
       document.documentElement.classList.add("custom-cursor-enabled");
 
       gsap.set([dot, ring], { xPercent: 0, yPercent: 0 });
+
+      // Trail: the last ~600ms of pointer positions drawn as a soft curve that fades out.
+      const path = pathRef.current;
+      const points: Array<{ x: number; y: number; t: number }> = [];
+      const drawTrail = () => {
+        if (!path) return;
+        const now = performance.now();
+        while (points.length && now - points[0].t > 600) points.shift();
+        if (points.length < 2) {
+          path.setAttribute("d", "");
+          return;
+        }
+        let d = `M${points[0].x},${points[0].y}`;
+        for (let i = 1; i < points.length - 1; i++) {
+          const mx = (points[i].x + points[i + 1].x) / 2;
+          const my = (points[i].y + points[i + 1].y) / 2;
+          d += ` Q${points[i].x},${points[i].y} ${mx},${my}`;
+        }
+        const last = points[points.length - 1];
+        d += ` L${last.x},${last.y}`;
+        path.setAttribute("d", d);
+        path.style.opacity = String(Math.max(0, 1 - (now - last.t) / 600));
+      };
+      gsap.ticker.add(drawTrail);
       const ringX = gsap.quickTo(ring, "x", { duration: 0.45, ease: "power3.out" });
       const ringY = gsap.quickTo(ring, "y", { duration: 0.45, ease: "power3.out" });
 
@@ -44,6 +69,8 @@ export function CustomCursor() {
       };
 
       const onMove = (e: MouseEvent) => {
+        points.push({ x: e.clientX, y: e.clientY, t: performance.now() });
+        if (points.length > 48) points.shift();
         gsap.set(dot, { x: e.clientX, y: e.clientY });
         ringX(e.clientX);
         ringY(e.clientY);
@@ -84,8 +111,15 @@ export function CustomCursor() {
         }
       };
 
-      const onDown = () => ring.classList.add("is-down");
-      const onUp = () => ring.classList.remove("is-down");
+      // Mouse down: press the dot and ring in slightly; release springs back.
+      const onDown = () => {
+        ring.classList.add("is-down");
+        gsap.to(dot, { scale: 0.7, duration: 0.2, ease: "power2.out" });
+      };
+      const onUp = () => {
+        ring.classList.remove("is-down");
+        gsap.to(dot, { scale: 1, duration: 0.4, ease: "back.out(2)" });
+      };
       const onLeaveWindow = () => {
         dot.classList.remove("is-visible");
         ring.classList.remove("is-visible");
@@ -105,6 +139,7 @@ export function CustomCursor() {
         window.removeEventListener("mousedown", onDown);
         window.removeEventListener("mouseup", onUp);
         document.documentElement.removeEventListener("mouseleave", onLeaveWindow);
+        gsap.ticker.remove(drawTrail);
         gsap.killTweensOf([ring, dot]);
         ring.classList.remove("is-hover", "is-large", "is-down", "is-visible");
         dot.classList.remove("is-visible");
@@ -133,6 +168,9 @@ export function CustomCursor() {
 
   return (
     <>
+      <svg className="hm-trail is-visible" aria-hidden="true">
+        <path ref={pathRef} fill="none" stroke="#1F4BFF" strokeWidth="2" strokeLinecap="round" />
+      </svg>
       <div ref={dotRef} className="cursor-dot" aria-hidden="true" />
       <div ref={ringRef} className="cursor-ring" aria-hidden="true">
         <span ref={labelRef} className="cursor-ring__label" />
